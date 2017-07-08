@@ -1,0 +1,13 @@
+.comments {
+  max-width: rem(800);
+  margin: 0 auto;
+
+  @include bp($md) {
+    padding: 0 rem(30);
+  }
+
+  &__wrapper {
+    @extend %content-wrapper;
+    margin: rem(40) 0 rem(80);
+  }
+}

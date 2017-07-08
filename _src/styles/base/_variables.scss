@@ -1,0 +1,82 @@
+// Typography
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i');
+
+$serif: 'minion-pro', georgia, serif;
+$sans: 'Montserrat', sans-serif;
+
+$base-font-family: $serif;
+$heading-font-family: $serif;
+
+// Font Sizes
+$base-font-size: 1em;
+
+// Line height
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 1px;
+$base-spacing: $base-line-height * 1em;
+$xl-spacing: $base-spacing * 4;
+$large-spacing: $base-spacing * 2;
+$small-spacing: $base-spacing / 2;
+$base-z-index: 0;
+
+// Colors
+$blue: #477dca;
+$dark-gray: #333;
+$medium-gray: #999;
+$light-gray: #ddd;
+$white: #fff;
+
+$tmp-light: #f2f2f2;
+$tmp-gray: #969997;
+$tmp-brand: #bfaf7c;
+$tmp-dark: #2c332c;
+
+// Font Colors
+$base-background-color: $tmp-light;
+$base-font-color: $tmp-dark;
+$action-color: $tmp-brand;
+
+//breakpoints
+$breakpoint_xsmall: 370px; // small-mobile
+$breakpoint_small: 500px; // mobile
+$breakpoint_medium: 840px; // tablet
+$breakpoint_large: 1200px; // small desktop
+$breakpoint_xlarge: 1440px; // large desktop
+
+$xs: $breakpoint_xsmall;
+$sm: $breakpoint_small;
+$md: $breakpoint_medium;
+$lg: $breakpoint_large;
+$xl: $breakpoint_xlarge;
+
+// Transitions
+$ease-fast: 200ms ease-in-out;
+$ease-med: 400ms ease-in-out;
+$ease-slow: 600ms ease-in-out;
+
+// Border
+$base-border-color: rgba($tmp-gray, 0.5);
+$base-border: 1px solid $base-border-color;
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+
+// Navicon
+$navi-size: 18px;
+$navi-transition: 0.4s;
+
+// z-index
+$z-nav: 8765310;
+$z-aside: $z-nav - 1;
+$z-modal: $z-nav + 10;
+$z-home-intro: $z-nav + 5;
+$z-m-nav: $z-nav + 10;
+$z-m-nav-menu: $z-nav + 10;
+$z-m-nav-box: $z-nav - 1;
+$z-search: $z-nav + 10;
+$z-post-title: 100;
+$z-post-content: 50;

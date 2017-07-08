@@ -1,0 +1,5 @@
+<div id="home-posts" class="home-posts js-home-posts">
+  {% paginate craft.entries.section('postEntries').limit(18) as posts %}
+  {% include 'home/_posts' %}
+</div>
+{% include 'home/_paginate' %}

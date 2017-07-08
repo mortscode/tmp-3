@@ -1,0 +1,91 @@
+.btn {
+  @include appearance(none);
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $sans;
+  font-size: rem(18);
+  letter-spacing: em(0.5);
+  -webkit-font-smoothing: antialiased;
+  font-weight: 600;
+  line-height: 1;
+  padding: rem(21) rem(60);
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: background-color $ease-fast, padding $ease-fast, width $ease-fast;
+
+  @include breakpoint($vp4) {
+    padding: rem(18) rem(50);
+  }
+
+  @include breakpoint($vp3) {
+    padding: rem(18) rem(40);
+    font-size: rem(16);
+  }
+
+  @include breakpoint($vp2) {
+    padding: rem(18);
+    font-size: rem(13);
+    width: 100%;
+  }
+
+  &.pop {
+    background-color: $action-color;
+
+    &:hover,
+    &:focus {
+      background-color: darken($action-color, 15%);
+      color: #fff;
+    }
+  }
+
+  &.gray {
+    background-color: $tmp-gray;
+
+    &:hover,
+    &:focus {
+      background-color: darken($tmp-gray, 15%);
+      color: #fff;
+    }
+  }
+
+  &.light {
+    background-color: $tmp-light;
+    color: $tmp-gray;
+
+    &:hover,
+    &:focus {
+      background-color: $white;
+    }
+  }
+
+  &.aside {
+    text-align: center;
+    width: 100%;
+    padding: $small-spacing 0;
+    font-size: rem(12);
+
+    &.buffer-bottom {
+      margin-bottom: $base-spacing;
+    }
+  }
+
+  &.small {
+    font-size: rem(12);
+    padding: rem(16) rem(40);
+  }
+
+  &.remove {
+    display: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

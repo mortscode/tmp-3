@@ -1,0 +1,26 @@
+{% set transformedImages = craft.imager.transformImage(image,
+    [
+        { width: 1000, ratio: image.width / image.height, jpegQuality: 95 },
+        { width: 480, ratio: image.width / image.height, jpegQuality: 85 },
+    ],
+    {
+        format: 'jpg',
+        allowUpscale: false,
+        mode: 'crop',
+        jpegQuality: 85,
+        position: image.focusPctX ~ '% ' ~ image.focusPctY ~ '%',
+        interlace: true
+    }
+) %}
+<div class="post-card {% if homePage %}first-loop{% endif %} {% if index > 6 %}after-featured{% endif %} js-scrolls animate -fade-up" data-offset="0.9">
+  <a href="{{url}}" class="post-card__image js-lazy-img" data-img-src="{{ transformedImages[1].url }}" {% if index < 4 %}data-init-load="true"{% endif %}>
+    <div class="post-card__image--border"></div>
+    <span class="post-card__image--cta">Read post</span>
+  </a>
+  <div class="post-card__text">
+    <a href="{{url}}">
+      <h2 class="post-card__title js-avoid-orphan">{{title}}</h2>
+    </a>
+    <p class="post-card__summary js-avoid-orphan">{{summary}}</p>
+  </div>
+</div>

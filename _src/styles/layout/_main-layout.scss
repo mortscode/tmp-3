@@ -1,0 +1,49 @@
+body {
+  background-color: $tmp-light;
+}
+
+.content {
+  min-height: 100vh;
+}
+
+%content-wrapper {
+  position: relative;
+  padding: 0 rem(120);
+  overflow: hidden;
+  background: $tmp-light;
+  z-index: 1;
+
+  @include bp($lg) {
+    padding: 0 rem(80);
+  }
+
+  @include bp($sm) {
+    padding: 0;
+  }
+}
+
+%content-inner-wrapper {
+  max-width: rem(1280);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+%content-inner-wrapper-narrow {
+  max-width: rem(800);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+%entry-inner-wrapper {
+  max-width: rem(1280);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

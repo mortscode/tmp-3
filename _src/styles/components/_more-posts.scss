@@ -1,0 +1,22 @@
+.more-posts {
+  @extend %content-wrapper;
+
+  &__title {
+    @extend %title-serif-md;
+    color: $tmp-gray;
+    margin-bottom: $base-spacing;
+    text-align: center;
+
+    &--text {
+      text-transform: none;
+    }
+  }
+
+  &__wrapper {
+    @extend %content-inner-wrapper-narrow;
+
+    @include bp($md) {
+      padding: 0 rem(30);
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{% set pinterestLink = 'http://pinterest.com/pin/create/button/?url=' ~ entry.url ~ '&amp;media=' ~ siteUrl ~ entry.featuredImage.first.url ~ '&amp;description=' ~ entry.title %}
+
+<div class="share">
+    <hr class="share__title--line">
+    <h3 class="share__title">Share</h3>
+    <a href="{{'https://twitter.com/share?text=' ~ entry.title ~ ' from @themodernproper:&' ~ entry.url }}" class="share__icon" target="_blank">
+        <span class="icon-logo twitter"></span>
+    </a>
+    <div id="fb-root" style="display:none;"></div>
+    <a href="{{ entry.url }}" class="share__icon" data-image="{{ siteUrl ~ entry.featuredImage.first.url }}" data-title="{{ entry.title }}" data-desc="{{ entry.postSummary }}" class="fb_share">
+        <span class="icon-logo facebook"></span>
+    </a>
+</div>

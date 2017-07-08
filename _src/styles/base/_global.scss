@@ -1,0 +1,64 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.-hide {
+  display: none;
+}
+
+.no-scroll {
+  overflow: hidden;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.tk-fade {
+  transition: opacity 400ms ease-out;
+
+  .wf-loading & {
+    opacity: 0;
+  }
+
+  .wf-active & {
+    opacity: 1;
+  }
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.-rel {
+  position: relative;
+}
+
+/* IE9  - Also picked up by most modern browsers */
+::selection {
+  background: rgba($tmp-brand, 0.75);
+  color: $tmp-dark;
+  text-shadow: none;
+}
+/* Safari & Chrome - Webkit Rendering */
+::-webkit-selection {
+  background: rgba($tmp-brand, 0.75);
+  color: $tmp-dark;
+  text-shadow: none;
+}
+/* Mozilla based - Gecko Rendering */
+::-moz-selection {
+  background: rgba($tmp-brand, 0.75);
+  color: $tmp-dark;
+  text-shadow: none;
+}

@@ -1,0 +1,43 @@
+# Craft runtime and backups folders
+# ----------------------------------------------------------------------
+craft/config/db.php
+craft/config/general.php
+craft/config/license.key
+craft/storage/runtime/*
+craft/storage/backups/*
+craft/app/
+craft/plugins/
+craft/storage/
+
+# Uploaded files
+# ----------------------------------------------------------------------
+public/assets/uploads/*
+public/assets/img/
+public/icons/
+node_modules/
+data/
+
+# Misc files
+# ----------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+.babelrc
+.eslintrc
+.scss-lint.yml
+nbproject
+*.sublime-workspace
+*.sublime-project
+*.komodoproject
+.komodotools
+_notes
+dwsync.xml
+logs/*
+
+node_modules
+
+libs

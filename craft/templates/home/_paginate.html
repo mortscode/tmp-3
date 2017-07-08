@@ -1,0 +1,24 @@
+{% set bothBtns = paginate.prevUrl and paginate.nextUrl %}
+<div class="paginate__wrapper">
+  <div class="paginate">
+    {% if paginate.prevUrl %}
+    <div class="paginate__button -left">
+        <a href="{{ paginate.prevUrl }}" class="paginate__button--link">
+          {% include 'utils/icon' with {'icon':'arrow-paginate','classes':'paginate__button--icon -left'} %}
+          Newer posts
+        </a>
+    </div>
+    {% endif %}
+    <a href="/" class="paginate__home-link">
+      {% include 'utils/icon' with {'icon':'tmp-icon', 'classes':'paginate__brand'} %}
+    </a>
+    {% if paginate.nextUrl %}
+    <div class="paginate__button -right {% if not bothBtns %}-solo{% endif %}">
+        <a href="{{ paginate.nextUrl }}" class="paginate__button--link">
+          {% if bothBtns %}Older posts{% else %}More posts{% endif %}
+          {% include 'utils/icon' with {'icon':'arrow-paginate','classes':'paginate__button--icon'} %}
+        </a>
+    </div>
+    {% endif %}
+  </div>
+</div>

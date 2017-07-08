@@ -1,0 +1,111 @@
+.aside-column {
+  z-index: $z-aside;
+  position: relative;
+
+  .aside-title {
+    font-size: rem(24);
+    line-height: rem(30);
+    color: darken($tmp-gray, 20%);
+
+    @include bp($lg) {
+      font-size: rem(21);
+      line-height: rem(28);
+    }
+
+    @include bp($md) {
+      font-size: rem(18);
+      line-height: rem(24);
+    }
+  }
+
+  .aside-blurb {
+    font-size: rem(16);
+    line-height: rem(24);
+    margin-bottom: $base-spacing;
+  }
+
+  &.left {
+    @include span(5 of 24);
+    padding: $large-spacing 0 $large-spacing span(1 of 24);
+
+    @include bp($lg) {
+      @include span(3);
+    }
+
+    @include bp($md) {
+      @include span(7 of 24);
+    }
+
+    @include bp($sm) {
+      display: none;
+    }
+  }
+
+  &.right {
+    @include span(5 of 24);
+    @include pull(2 of 24);
+    padding: $large-spacing $base-spacing;
+
+    @include bp($lg) {
+      display: none;
+    }
+
+    .about-blurb {
+      font-size: rem(12);
+      line-height: rem(18);
+    }
+  }
+
+  .about-tmp {
+    margin-bottom: $large-spacing;
+
+    .logo-wrapper {
+      width: 100%;
+      height: auto;
+      margin: 0 auto $small-spacing;
+    }
+
+    .about-img {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      width: 100%;
+      margin-bottom: $base-spacing;
+
+      &::after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+      }
+
+      &.-m-top {
+        padding-top: $base-spacing + $small-spacing;
+      }
+    }
+  }
+
+  // .featured-link {
+  //   padding: $base-spacing + $small-spacing 0 $base-spacing;
+  //   border-top: 1px solid rgba($tmp-gray, 0.7);
+  //
+  //   &__image {
+  //     background-repeat: no-repeat;
+  //     background-size: cover;
+  //     background-position: 50% 50%;
+  //     width: 100%;
+  //     margin-bottom: $base-spacing;
+  //
+  //     &::after {
+  //       content: "";
+  //       display: block;
+  //       padding-bottom: 100%;
+  //     }
+  //   }
+  // }
+
+  // .newsletter {
+  //   z-index: $z-aside;
+  //   padding: $large-spacing 0;
+  //   border-top: 1px solid rgba($tmp-gray, 0.7);
+  // }
+}

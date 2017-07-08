@@ -1,0 +1,50 @@
+{#
+ # Layout template
+ # ---------------
+ #}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+{% include 'partials/siteHead' %}
+
+{% if entry is defined %}
+  {% set section = entry.getSection() %}
+  {% if section.handle == 'postEntries' %}
+    {% set recipe = true %}
+  {% endif %}
+{% else %}
+  {% set section = 'no-section' %}
+{% endif %}
+
+{% set pageUrl = url(craft.request.path) %}
+{% if pageUrl == siteUrl %}
+  {% set homePage = true %}
+{% else %}
+  {% set homePage = false %}
+{% endif %}
+
+<body class="tk-fade{% if recipe is defined and true %} print-styles{% endif %}">
+  <div class="content">
+
+    {% include 'partials/header' %}
+
+    <main id="main" role="main" class="main js-main">
+      {% block content %}
+        <p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+        <p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+      {% endblock %}
+    </main>
+
+    {% include 'partials/navigation' %}
+    {% include 'partials/search' %}
+  </div>
+
+  {% cache for 4 hours %}
+  <script src="/assets/js/main.js"></script>
+  {% endcache %}
+  {% block newsletterJs %}{% endblock %}
+  {% block footerJs %}{% endblock %}
+  {% include 'scripts/_analytics' %}
+</body>
+</html>

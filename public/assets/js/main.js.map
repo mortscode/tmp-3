@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["main.js"],"sourcesContent":["import App from './app/App';\n\nwindow.app = new App();\n"],"file":"main.js"}

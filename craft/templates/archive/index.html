@@ -1,0 +1,47 @@
+{% extends "_layout" %}
+
+{% set archive = craft.entries.section('postEntries').limit(null) %}
+{% set snark = [
+  'recipes and counting.',
+  'delicious recipes so far.',
+  'game changers.',
+  'delightful dishes.',
+] %}
+
+{% block content %}
+  <div class="archive">
+    <h1 class="archive__title">Post archive: <span class="message">{{ archive|length }} {{ random(snark) }}</span></h1>
+    <ul class="archive__list">
+      {% cache for 4 hours %}
+      {% for entry in archive %}
+      <li class="archive__list-item">
+        <a href="{{entry.url}}" class="archive__list-item--link">
+          {% if entry.featuredImage | length %}
+            {% set photo = entry.featuredImage[0] %}
+            {% if photo.height > photo.width %}
+              {% set vars = {
+                'image': photo,
+                'lazyImage': true,
+                'classes': 'archive__list-item--picture',
+                'title': entry.title,
+              }%}
+            {% else %}
+              {% set vars = {
+                'image': photo,
+                'lazyImage': true,
+                'forceVert': true,
+                'classes': 'archive__list-item--picture',
+                'title': entry.title,
+              }%}
+            {% endif %}
+            {% include 'utils/picture' with vars %}
+          {% endif %}
+          <div class="archive__list-item--date">{{entry.postDate.format('F d, Y')}}</div>
+          <h2 class="archive__list-item--title">{{ entry.title }}</h2>
+        </a>
+      </li>
+      {% endfor %}
+      {% endcache %}
+    </ul>
+  </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% if image | length %}
+    {% set transformedImages = craft.imager.transformImage(image,
+        [
+            { width: 1000, ratio: 667 / 1000, jpegQuality: 95 },
+            { width: 480, ratio: 667 / 1000, jpegQuality: 85 },
+        ],
+        {
+            format: 'jpg',
+            allowUpscale: false,
+            mode: 'crop',
+            jpegQuality: 85,
+            position: image.focusPctX ~ '% ' ~ image.focusPctY ~ '%',
+            interlace: true
+        }
+    ) %}
+    {% if lazyImage %}
+        {% spaceless %}
+        <img class="{{classes}} js-lazy-img"
+            src="{{ craft.imager.base64Pixel(2,1) }}"
+            data-img-src="{{ transformedImages[1].url }}"
+            sizes="100vw"
+            srcset="{{ craft.imager.srcset(transformedImages) }}"
+            alt="{{ title ? title : entry.title }}">
+        {% endspaceless %}
+    {% else %}
+        {% spaceless %}
+        <img class="{{classes}}"
+            src="{{ transformedImages[1].url }}"
+            sizes="100vw"
+            srcset="{{ craft.imager.srcset(transformedImages) }}"
+            alt="{{ title ? title : entry.title }}">
+        {% endspaceless %}
+    {% endif %}
+{% endif %}
