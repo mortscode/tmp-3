@@ -4,7 +4,7 @@ return array(
   'imagerSystemPath' => $_SERVER['DOCUMENT_ROOT'] . '/imager/',
   'imagerUrl' => '/imager/',
   'cacheEnabled' => true,
-  'cacheDuration' => 1209600, // 14 days
+  'cacheDuration' => 15768000, // 6 months
   'cacheDurationRemoteFiles' => 1209600, // 14 days
   'jpegQuality' => 85,
   'pngCompressionLevel' => 2,
