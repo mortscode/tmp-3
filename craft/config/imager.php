@@ -43,7 +43,7 @@ return array(
   'mozjpegEnabled' => false,
   'mozjpegPath' => '/usr/bin/mozjpeg',
   'mozjpegOptionString' => '-optimize -copy none',
-  'optipngEnabled' => true,
+  'optipngEnabled' => false,
   'optipngPath' => '/usr/bin/optipng',
   'optipngOptionString' => '-o5',
   'pngquantEnabled' => false,

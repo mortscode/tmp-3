@@ -1,5 +1,7 @@
 run.config:  
   engine: php
+  extra_packages:
+    - jpegoptim
   engine.config:
     runtime: php-7.1
     document_root: public
@@ -18,8 +20,6 @@ run.config:
       - imagick
       - session
       - zlib
-    extra_packages:
-      - jpegoptim-1.4.4
 
 web.craft:  
   start: php-server
