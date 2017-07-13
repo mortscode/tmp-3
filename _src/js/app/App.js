@@ -1,6 +1,7 @@
 import $ from 'properjs-hobo';
+import lazySizes from 'lazysizes';
 import avoidOrphan from './utils/avoid-orphan';
-import loadImages from './utils/load-images';
+// import loadImages from './utils/load-images';
 import emitter from './utils/emitter';
 import scroller from './utils/scroller';
 import ScrollTo from './utils/scroll-to';
@@ -13,7 +14,7 @@ import ScrollElems from './components/ScrollElems';
 
 export default class App {
   constructor() {
-    this.$lazyImgs = $('.js-lazy-img');
+    // this.$lazyImgs = $('.js-lazy-img');
     this.$scrolls = $('.js-scrolls');
     this.$scrollTos = $('.js-scroll-to');
     this.$orphans = $('.js-avoid-orphan');
@@ -26,12 +27,27 @@ export default class App {
     this.mobileNav = new MobileNav('.js-nav-button');
     this.navigation = new Navigation('.js-navigation');
     this.search = new Search('.js-search');
-    loadImages(this.$lazyImgs);
+    // loadImages(this.$lazyImgs);
+    this._lazyConfig();
+    lazySizes.init();
     this._bindEvents();
     this._mapOrphans();
     this._mapScrolls();
     this._mapScrollTos();
     this._printRecipe();
+  }
+
+  _lazyConfig() {
+    document.addEventListener('lazybeforeunveil', (e) => {
+      const bg = e.target.getAttribute('data-bg');
+      if (bg) {
+        e.target.style.backgroundImage = 'url(' + bg + ')';
+      }
+    });
+
+    window.lazySizes.config = {
+      loadMode: 1,
+    };
   }
 
   _bindEvents() {

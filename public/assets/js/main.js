@@ -6,18 +6,20 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+// import loadImages from './utils/load-images';
+
 
 var _properjsHobo = require('properjs-hobo');
 
 var _properjsHobo2 = _interopRequireDefault(_properjsHobo);
 
+var _lazysizes = require('lazysizes');
+
+var _lazysizes2 = _interopRequireDefault(_lazysizes);
+
 var _avoidOrphan = require('./utils/avoid-orphan');
 
 var _avoidOrphan2 = _interopRequireDefault(_avoidOrphan);
-
-var _loadImages = require('./utils/load-images');
-
-var _loadImages2 = _interopRequireDefault(_loadImages);
 
 var _emitter = require('./utils/emitter');
 
@@ -63,7 +65,7 @@ var App = function () {
   function App() {
     _classCallCheck(this, App);
 
-    this.$lazyImgs = (0, _properjsHobo2.default)('.js-lazy-img');
+    // this.$lazyImgs = $('.js-lazy-img');
     this.$scrolls = (0, _properjsHobo2.default)('.js-scrolls');
     this.$scrollTos = (0, _properjsHobo2.default)('.js-scroll-to');
     this.$orphans = (0, _properjsHobo2.default)('.js-avoid-orphan');
@@ -78,12 +80,28 @@ var App = function () {
       this.mobileNav = new _MobileNav2.default('.js-nav-button');
       this.navigation = new _Navigation2.default('.js-navigation');
       this.search = new _Search2.default('.js-search');
-      (0, _loadImages2.default)(this.$lazyImgs);
+      // loadImages(this.$lazyImgs);
+      this._lazyConfig();
+      _lazysizes2.default.init();
       this._bindEvents();
       this._mapOrphans();
       this._mapScrolls();
       this._mapScrollTos();
       this._printRecipe();
+    }
+  }, {
+    key: '_lazyConfig',
+    value: function _lazyConfig() {
+      document.addEventListener('lazybeforeunveil', function (e) {
+        var bg = e.target.getAttribute('data-bg');
+        if (bg) {
+          e.target.style.backgroundImage = 'url(' + bg + ')';
+        }
+      });
+
+      window.lazySizes.config = {
+        loadMode: 1
+      };
     }
   }, {
     key: '_bindEvents',
@@ -142,8 +160,8 @@ var App = function () {
 }();
 
 exports.default = App;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkFwcC5qcyJdLCJuYW1lcyI6WyJBcHAiLCIkbGF6eUltZ3MiLCIkc2Nyb2xscyIsIiRzY3JvbGxUb3MiLCIkb3JwaGFucyIsIm9ycGhhbkFycmF5IiwiaW5pdGlhbGl6ZSIsInNlYXJjaEJ1dHRvbiIsIm1vYmlsZU5hdiIsIm5hdmlnYXRpb24iLCJzZWFyY2giLCJfYmluZEV2ZW50cyIsIl9tYXBPcnBoYW5zIiwiX21hcFNjcm9sbHMiLCJfbWFwU2Nyb2xsVG9zIiwiX3ByaW50UmVjaXBlIiwib24iLCJmaXJlIiwiZWFjaCIsImVsZW0iLCJpIiwiJGVsZW0iLCJkYXRhIiwicHVzaCIsIm1hcCIsIm9ycGhhbiIsImUiLCJwcmV2ZW50RGVmYXVsdCIsIndpbmRvdyIsInByaW50Il0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7Ozs7Ozs7SUFFcUJBLEc7QUFDbkIsaUJBQWM7QUFBQTs7QUFDWixTQUFLQyxTQUFMLEdBQWlCLDRCQUFFLGNBQUYsQ0FBakI7QUFDQSxTQUFLQyxRQUFMLEdBQWdCLDRCQUFFLGFBQUYsQ0FBaEI7QUFDQSxTQUFLQyxVQUFMLEdBQWtCLDRCQUFFLGVBQUYsQ0FBbEI7QUFDQSxTQUFLQyxRQUFMLEdBQWdCLDRCQUFFLGtCQUFGLENBQWhCO0FBQ0EsU0FBS0MsV0FBTCxHQUFtQixFQUFuQjtBQUNBLFNBQUtDLFVBQUw7QUFDRDs7OztpQ0FFWTtBQUNYLFdBQUtDLFlBQUwsR0FBb0IsMkJBQWlCLGlCQUFqQixDQUFwQjtBQUNBLFdBQUtDLFNBQUwsR0FBaUIsd0JBQWMsZ0JBQWQsQ0FBakI7QUFDQSxXQUFLQyxVQUFMLEdBQWtCLHlCQUFlLGdCQUFmLENBQWxCO0FBQ0EsV0FBS0MsTUFBTCxHQUFjLHFCQUFXLFlBQVgsQ0FBZDtBQUNBLGdDQUFXLEtBQUtULFNBQWhCO0FBQ0EsV0FBS1UsV0FBTDtBQUNBLFdBQUtDLFdBQUw7QUFDQSxXQUFLQyxXQUFMO0FBQ0EsV0FBS0MsYUFBTDtBQUNBLFdBQUtDLFlBQUw7QUFDRDs7O2tDQUVhO0FBQ1oseUJBQVNDLEVBQVQsQ0FBWSxRQUFaLEVBQXNCLFlBQU07QUFDMUIsMEJBQVFDLElBQVIsQ0FBYSxhQUFiO0FBQ0QsT0FGRDs7QUFJQSx3QkFBUUQsRUFBUixDQUFXLFFBQVgsRUFBcUIsWUFBTTtBQUN6QiwwQkFBUUMsSUFBUixDQUFhLGNBQWI7QUFDRCxPQUZEO0FBR0Q7OztrQ0FFYTtBQUFBOztBQUNaLFdBQUtmLFFBQUwsQ0FBY2dCLElBQWQsQ0FBbUIsVUFBQ0MsSUFBRCxFQUFPQyxDQUFQLEVBQWE7QUFDOUIsWUFBTUMsUUFBUSw0QkFBRSxNQUFLbkIsUUFBTCxDQUFja0IsQ0FBZCxDQUFGLENBQWQ7QUFDQUMsY0FBTUMsSUFBTixDQUFXLFNBQVgsRUFBc0IsMEJBQWdCRCxLQUFoQixDQUF0QjtBQUNELE9BSEQ7QUFJRDs7O2tDQUVhO0FBQUE7O0FBQ1osV0FBS2pCLFFBQUwsQ0FBY2MsSUFBZCxDQUFtQixVQUFDQyxJQUFELEVBQVU7QUFDM0IsZUFBS2QsV0FBTCxDQUFpQmtCLElBQWpCLENBQXNCSixJQUF0QjtBQUNELE9BRkQ7QUFHQSxXQUFLZCxXQUFMLENBQWlCbUIsR0FBakIsQ0FBcUIsVUFBQ0MsTUFBRCxFQUFZO0FBQy9CLG1DQUFZQSxNQUFaO0FBQ0QsT0FGRDtBQUdEOzs7b0NBRWU7QUFBQTs7QUFDZCxXQUFLdEIsVUFBTCxDQUFnQmUsSUFBaEIsQ0FBcUIsVUFBQ0MsSUFBRCxFQUFPQyxDQUFQLEVBQWE7QUFDaEMsWUFBTUMsUUFBUSw0QkFBRSxPQUFLbEIsVUFBTCxDQUFnQmlCLENBQWhCLENBQUYsQ0FBZDtBQUNBQyxjQUFNQyxJQUFOLENBQVcsVUFBWCxFQUF1Qix1QkFBYUQsS0FBYixDQUF2QjtBQUNELE9BSEQ7QUFJRDs7O21DQUVjO0FBQ2Isa0NBQUUsa0JBQUYsRUFBc0JMLEVBQXRCLENBQXlCLE9BQXpCLEVBQWtDLFVBQUNVLENBQUQsRUFBTztBQUN2Q0EsVUFBRUMsY0FBRjtBQUNBQyxlQUFPQyxLQUFQO0FBQ0QsT0FIRDtBQUlEOzs7Ozs7a0JBN0RrQjdCLEciLCJmaWxlIjoiQXBwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICQgZnJvbSAncHJvcGVyanMtaG9ibyc7XG5pbXBvcnQgYXZvaWRPcnBoYW4gZnJvbSAnLi91dGlscy9hdm9pZC1vcnBoYW4nO1xuaW1wb3J0IGxvYWRJbWFnZXMgZnJvbSAnLi91dGlscy9sb2FkLWltYWdlcyc7XG5pbXBvcnQgZW1pdHRlciBmcm9tICcuL3V0aWxzL2VtaXR0ZXInO1xuaW1wb3J0IHNjcm9sbGVyIGZyb20gJy4vdXRpbHMvc2Nyb2xsZXInO1xuaW1wb3J0IFNjcm9sbFRvIGZyb20gJy4vdXRpbHMvc2Nyb2xsLXRvJztcbmltcG9ydCByZXNpemVyIGZyb20gJy4vdXRpbHMvcmVzaXplcic7XG5pbXBvcnQgU2VhcmNoQnV0dG9uIGZyb20gJy4vY29tcG9uZW50cy9TZWFyY2hCdXR0b24nO1xuaW1wb3J0IE1vYmlsZU5hdiBmcm9tICcuL2NvbXBvbmVudHMvTW9iaWxlTmF2JztcbmltcG9ydCBOYXZpZ2F0aW9uIGZyb20gJy4vY29tcG9uZW50cy9OYXZpZ2F0aW9uJztcbmltcG9ydCBTZWFyY2ggZnJvbSAnLi9jb21wb25lbnRzL1NlYXJjaCc7XG5pbXBvcnQgU2Nyb2xsRWxlbXMgZnJvbSAnLi9jb21wb25lbnRzL1Njcm9sbEVsZW1zJztcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgQXBwIHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgdGhpcy4kbGF6eUltZ3MgPSAkKCcuanMtbGF6eS1pbWcnKTtcbiAgICB0aGlzLiRzY3JvbGxzID0gJCgnLmpzLXNjcm9sbHMnKTtcbiAgICB0aGlzLiRzY3JvbGxUb3MgPSAkKCcuanMtc2Nyb2xsLXRvJyk7XG4gICAgdGhpcy4kb3JwaGFucyA9ICQoJy5qcy1hdm9pZC1vcnBoYW4nKTtcbiAgICB0aGlzLm9ycGhhbkFycmF5ID0gW107XG4gICAgdGhpcy5pbml0aWFsaXplKCk7XG4gIH1cblxuICBpbml0aWFsaXplKCkge1xuICAgIHRoaXMuc2VhcmNoQnV0dG9uID0gbmV3IFNlYXJjaEJ1dHRvbignLmpzLXNlYXJjaC1pY29uJyk7XG4gICAgdGhpcy5tb2JpbGVOYXYgPSBuZXcgTW9iaWxlTmF2KCcuanMtbmF2LWJ1dHRvbicpO1xuICAgIHRoaXMubmF2aWdhdGlvbiA9IG5ldyBOYXZpZ2F0aW9uKCcuanMtbmF2aWdhdGlvbicpO1xuICAgIHRoaXMuc2VhcmNoID0gbmV3IFNlYXJjaCgnLmpzLXNlYXJjaCcpO1xuICAgIGxvYWRJbWFnZXModGhpcy4kbGF6eUltZ3MpO1xuICAgIHRoaXMuX2JpbmRFdmVudHMoKTtcbiAgICB0aGlzLl9tYXBPcnBoYW5zKCk7XG4gICAgdGhpcy5fbWFwU2Nyb2xscygpO1xuICAgIHRoaXMuX21hcFNjcm9sbFRvcygpO1xuICAgIHRoaXMuX3ByaW50UmVjaXBlKCk7XG4gIH1cblxuICBfYmluZEV2ZW50cygpIHtcbiAgICBzY3JvbGxlci5vbignc2Nyb2xsJywgKCkgPT4ge1xuICAgICAgZW1pdHRlci5maXJlKCdhcHAtLXNjcm9sbCcpO1xuICAgIH0pO1xuXG4gICAgcmVzaXplci5vbigncmVzaXplJywgKCkgPT4ge1xuICAgICAgZW1pdHRlci5maXJlKCdhcHAtLXJlc2l6ZXInKTtcbiAgICB9KTtcbiAgfVxuXG4gIF9tYXBTY3JvbGxzKCkge1xuICAgIHRoaXMuJHNjcm9sbHMuZWFjaCgoZWxlbSwgaSkgPT4ge1xuICAgICAgY29uc3QgJGVsZW0gPSAkKHRoaXMuJHNjcm9sbHNbaV0pO1xuICAgICAgJGVsZW0uZGF0YSgnc2Nyb2xscycsIG5ldyBTY3JvbGxFbGVtcygkZWxlbSkpO1xuICAgIH0pO1xuICB9XG5cbiAgX21hcE9ycGhhbnMoKSB7XG4gICAgdGhpcy4kb3JwaGFucy5lYWNoKChlbGVtKSA9PiB7XG4gICAgICB0aGlzLm9ycGhhbkFycmF5LnB1c2goZWxlbSk7XG4gICAgfSk7XG4gICAgdGhpcy5vcnBoYW5BcnJheS5tYXAoKG9ycGhhbikgPT4ge1xuICAgICAgYXZvaWRPcnBoYW4ob3JwaGFuKTtcbiAgICB9KTtcbiAgfVxuXG4gIF9tYXBTY3JvbGxUb3MoKSB7XG4gICAgdGhpcy4kc2Nyb2xsVG9zLmVhY2goKGVsZW0sIGkpID0+IHtcbiAgICAgIGNvbnN0ICRlbGVtID0gJCh0aGlzLiRzY3JvbGxUb3NbaV0pO1xuICAgICAgJGVsZW0uZGF0YSgnc2Nyb2xsVG8nLCBuZXcgU2Nyb2xsVG8oJGVsZW0pKTtcbiAgICB9KTtcbiAgfVxuXG4gIF9wcmludFJlY2lwZSgpIHtcbiAgICAkKCcuanMtcHJpbnQtcmVjaXBlJykub24oJ2NsaWNrJywgKGUpID0+IHtcbiAgICAgIGUucHJldmVudERlZmF1bHQoKTtcbiAgICAgIHdpbmRvdy5wcmludCgpO1xuICAgIH0pO1xuICB9XG59XG4iXX0=
-},{"./components/MobileNav":2,"./components/Navigation":3,"./components/ScrollElems":4,"./components/Search":5,"./components/SearchButton":6,"./utils/avoid-orphan":7,"./utils/emitter":8,"./utils/load-images":9,"./utils/resizer":10,"./utils/scroll-to":11,"./utils/scroller":12,"properjs-hobo":18}],2:[function(require,module,exports){
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkFwcC5qcyJdLCJuYW1lcyI6WyJBcHAiLCIkc2Nyb2xscyIsIiRzY3JvbGxUb3MiLCIkb3JwaGFucyIsIm9ycGhhbkFycmF5IiwiaW5pdGlhbGl6ZSIsInNlYXJjaEJ1dHRvbiIsIm1vYmlsZU5hdiIsIm5hdmlnYXRpb24iLCJzZWFyY2giLCJfbGF6eUNvbmZpZyIsImluaXQiLCJfYmluZEV2ZW50cyIsIl9tYXBPcnBoYW5zIiwiX21hcFNjcm9sbHMiLCJfbWFwU2Nyb2xsVG9zIiwiX3ByaW50UmVjaXBlIiwiZG9jdW1lbnQiLCJhZGRFdmVudExpc3RlbmVyIiwiZSIsImJnIiwidGFyZ2V0IiwiZ2V0QXR0cmlidXRlIiwic3R5bGUiLCJiYWNrZ3JvdW5kSW1hZ2UiLCJ3aW5kb3ciLCJsYXp5U2l6ZXMiLCJjb25maWciLCJsb2FkTW9kZSIsIm9uIiwiZmlyZSIsImVhY2giLCJlbGVtIiwiaSIsIiRlbGVtIiwiZGF0YSIsInB1c2giLCJtYXAiLCJvcnBoYW4iLCJwcmV2ZW50RGVmYXVsdCIsInByaW50Il0sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBR0E7OztBQUhBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUVBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7Ozs7Ozs7SUFFcUJBLEc7QUFDbkIsaUJBQWM7QUFBQTs7QUFDWjtBQUNBLFNBQUtDLFFBQUwsR0FBZ0IsNEJBQUUsYUFBRixDQUFoQjtBQUNBLFNBQUtDLFVBQUwsR0FBa0IsNEJBQUUsZUFBRixDQUFsQjtBQUNBLFNBQUtDLFFBQUwsR0FBZ0IsNEJBQUUsa0JBQUYsQ0FBaEI7QUFDQSxTQUFLQyxXQUFMLEdBQW1CLEVBQW5CO0FBQ0EsU0FBS0MsVUFBTDtBQUNEOzs7O2lDQUVZO0FBQ1gsV0FBS0MsWUFBTCxHQUFvQiwyQkFBaUIsaUJBQWpCLENBQXBCO0FBQ0EsV0FBS0MsU0FBTCxHQUFpQix3QkFBYyxnQkFBZCxDQUFqQjtBQUNBLFdBQUtDLFVBQUwsR0FBa0IseUJBQWUsZ0JBQWYsQ0FBbEI7QUFDQSxXQUFLQyxNQUFMLEdBQWMscUJBQVcsWUFBWCxDQUFkO0FBQ0E7QUFDQSxXQUFLQyxXQUFMO0FBQ0EsMEJBQVVDLElBQVY7QUFDQSxXQUFLQyxXQUFMO0FBQ0EsV0FBS0MsV0FBTDtBQUNBLFdBQUtDLFdBQUw7QUFDQSxXQUFLQyxhQUFMO0FBQ0EsV0FBS0MsWUFBTDtBQUNEOzs7a0NBRWE7QUFDWkMsZUFBU0MsZ0JBQVQsQ0FBMEIsa0JBQTFCLEVBQThDLFVBQUNDLENBQUQsRUFBTztBQUNuRCxZQUFNQyxLQUFLRCxFQUFFRSxNQUFGLENBQVNDLFlBQVQsQ0FBc0IsU0FBdEIsQ0FBWDtBQUNBLFlBQUlGLEVBQUosRUFBUTtBQUNORCxZQUFFRSxNQUFGLENBQVNFLEtBQVQsQ0FBZUMsZUFBZixHQUFpQyxTQUFTSixFQUFULEdBQWMsR0FBL0M7QUFDRDtBQUNGLE9BTEQ7O0FBT0FLLGFBQU9DLFNBQVAsQ0FBaUJDLE1BQWpCLEdBQTBCO0FBQ3hCQyxrQkFBVTtBQURjLE9BQTFCO0FBR0Q7OztrQ0FFYTtBQUNaLHlCQUFTQyxFQUFULENBQVksUUFBWixFQUFzQixZQUFNO0FBQzFCLDBCQUFRQyxJQUFSLENBQWEsYUFBYjtBQUNELE9BRkQ7O0FBSUEsd0JBQVFELEVBQVIsQ0FBVyxRQUFYLEVBQXFCLFlBQU07QUFDekIsMEJBQVFDLElBQVIsQ0FBYSxjQUFiO0FBQ0QsT0FGRDtBQUdEOzs7a0NBRWE7QUFBQTs7QUFDWixXQUFLN0IsUUFBTCxDQUFjOEIsSUFBZCxDQUFtQixVQUFDQyxJQUFELEVBQU9DLENBQVAsRUFBYTtBQUM5QixZQUFNQyxRQUFRLDRCQUFFLE1BQUtqQyxRQUFMLENBQWNnQyxDQUFkLENBQUYsQ0FBZDtBQUNBQyxjQUFNQyxJQUFOLENBQVcsU0FBWCxFQUFzQiwwQkFBZ0JELEtBQWhCLENBQXRCO0FBQ0QsT0FIRDtBQUlEOzs7a0NBRWE7QUFBQTs7QUFDWixXQUFLL0IsUUFBTCxDQUFjNEIsSUFBZCxDQUFtQixVQUFDQyxJQUFELEVBQVU7QUFDM0IsZUFBSzVCLFdBQUwsQ0FBaUJnQyxJQUFqQixDQUFzQkosSUFBdEI7QUFDRCxPQUZEO0FBR0EsV0FBSzVCLFdBQUwsQ0FBaUJpQyxHQUFqQixDQUFxQixVQUFDQyxNQUFELEVBQVk7QUFDL0IsbUNBQVlBLE1BQVo7QUFDRCxPQUZEO0FBR0Q7OztvQ0FFZTtBQUFBOztBQUNkLFdBQUtwQyxVQUFMLENBQWdCNkIsSUFBaEIsQ0FBcUIsVUFBQ0MsSUFBRCxFQUFPQyxDQUFQLEVBQWE7QUFDaEMsWUFBTUMsUUFBUSw0QkFBRSxPQUFLaEMsVUFBTCxDQUFnQitCLENBQWhCLENBQUYsQ0FBZDtBQUNBQyxjQUFNQyxJQUFOLENBQVcsVUFBWCxFQUF1Qix1QkFBYUQsS0FBYixDQUF2QjtBQUNELE9BSEQ7QUFJRDs7O21DQUVjO0FBQ2Isa0NBQUUsa0JBQUYsRUFBc0JMLEVBQXRCLENBQXlCLE9BQXpCLEVBQWtDLFVBQUNWLENBQUQsRUFBTztBQUN2Q0EsVUFBRW9CLGNBQUY7QUFDQWQsZUFBT2UsS0FBUDtBQUNELE9BSEQ7QUFJRDs7Ozs7O2tCQTVFa0J4QyxHIiwiZmlsZSI6IkFwcC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAkIGZyb20gJ3Byb3BlcmpzLWhvYm8nO1xuaW1wb3J0IGxhenlTaXplcyBmcm9tICdsYXp5c2l6ZXMnO1xuaW1wb3J0IGF2b2lkT3JwaGFuIGZyb20gJy4vdXRpbHMvYXZvaWQtb3JwaGFuJztcbi8vIGltcG9ydCBsb2FkSW1hZ2VzIGZyb20gJy4vdXRpbHMvbG9hZC1pbWFnZXMnO1xuaW1wb3J0IGVtaXR0ZXIgZnJvbSAnLi91dGlscy9lbWl0dGVyJztcbmltcG9ydCBzY3JvbGxlciBmcm9tICcuL3V0aWxzL3Njcm9sbGVyJztcbmltcG9ydCBTY3JvbGxUbyBmcm9tICcuL3V0aWxzL3Njcm9sbC10byc7XG5pbXBvcnQgcmVzaXplciBmcm9tICcuL3V0aWxzL3Jlc2l6ZXInO1xuaW1wb3J0IFNlYXJjaEJ1dHRvbiBmcm9tICcuL2NvbXBvbmVudHMvU2VhcmNoQnV0dG9uJztcbmltcG9ydCBNb2JpbGVOYXYgZnJvbSAnLi9jb21wb25lbnRzL01vYmlsZU5hdic7XG5pbXBvcnQgTmF2aWdhdGlvbiBmcm9tICcuL2NvbXBvbmVudHMvTmF2aWdhdGlvbic7XG5pbXBvcnQgU2VhcmNoIGZyb20gJy4vY29tcG9uZW50cy9TZWFyY2gnO1xuaW1wb3J0IFNjcm9sbEVsZW1zIGZyb20gJy4vY29tcG9uZW50cy9TY3JvbGxFbGVtcyc7XG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIEFwcCB7XG4gIGNvbnN0cnVjdG9yKCkge1xuICAgIC8vIHRoaXMuJGxhenlJbWdzID0gJCgnLmpzLWxhenktaW1nJyk7XG4gICAgdGhpcy4kc2Nyb2xscyA9ICQoJy5qcy1zY3JvbGxzJyk7XG4gICAgdGhpcy4kc2Nyb2xsVG9zID0gJCgnLmpzLXNjcm9sbC10bycpO1xuICAgIHRoaXMuJG9ycGhhbnMgPSAkKCcuanMtYXZvaWQtb3JwaGFuJyk7XG4gICAgdGhpcy5vcnBoYW5BcnJheSA9IFtdO1xuICAgIHRoaXMuaW5pdGlhbGl6ZSgpO1xuICB9XG5cbiAgaW5pdGlhbGl6ZSgpIHtcbiAgICB0aGlzLnNlYXJjaEJ1dHRvbiA9IG5ldyBTZWFyY2hCdXR0b24oJy5qcy1zZWFyY2gtaWNvbicpO1xuICAgIHRoaXMubW9iaWxlTmF2ID0gbmV3IE1vYmlsZU5hdignLmpzLW5hdi1idXR0b24nKTtcbiAgICB0aGlzLm5hdmlnYXRpb24gPSBuZXcgTmF2aWdhdGlvbignLmpzLW5hdmlnYXRpb24nKTtcbiAgICB0aGlzLnNlYXJjaCA9IG5ldyBTZWFyY2goJy5qcy1zZWFyY2gnKTtcbiAgICAvLyBsb2FkSW1hZ2VzKHRoaXMuJGxhenlJbWdzKTtcbiAgICB0aGlzLl9sYXp5Q29uZmlnKCk7XG4gICAgbGF6eVNpemVzLmluaXQoKTtcbiAgICB0aGlzLl9iaW5kRXZlbnRzKCk7XG4gICAgdGhpcy5fbWFwT3JwaGFucygpO1xuICAgIHRoaXMuX21hcFNjcm9sbHMoKTtcbiAgICB0aGlzLl9tYXBTY3JvbGxUb3MoKTtcbiAgICB0aGlzLl9wcmludFJlY2lwZSgpO1xuICB9XG5cbiAgX2xhenlDb25maWcoKSB7XG4gICAgZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignbGF6eWJlZm9yZXVudmVpbCcsIChlKSA9PiB7XG4gICAgICBjb25zdCBiZyA9IGUudGFyZ2V0LmdldEF0dHJpYnV0ZSgnZGF0YS1iZycpO1xuICAgICAgaWYgKGJnKSB7XG4gICAgICAgIGUudGFyZ2V0LnN0eWxlLmJhY2tncm91bmRJbWFnZSA9ICd1cmwoJyArIGJnICsgJyknO1xuICAgICAgfVxuICAgIH0pO1xuXG4gICAgd2luZG93LmxhenlTaXplcy5jb25maWcgPSB7XG4gICAgICBsb2FkTW9kZTogMSxcbiAgICB9O1xuICB9XG5cbiAgX2JpbmRFdmVudHMoKSB7XG4gICAgc2Nyb2xsZXIub24oJ3Njcm9sbCcsICgpID0+IHtcbiAgICAgIGVtaXR0ZXIuZmlyZSgnYXBwLS1zY3JvbGwnKTtcbiAgICB9KTtcblxuICAgIHJlc2l6ZXIub24oJ3Jlc2l6ZScsICgpID0+IHtcbiAgICAgIGVtaXR0ZXIuZmlyZSgnYXBwLS1yZXNpemVyJyk7XG4gICAgfSk7XG4gIH1cblxuICBfbWFwU2Nyb2xscygpIHtcbiAgICB0aGlzLiRzY3JvbGxzLmVhY2goKGVsZW0sIGkpID0+IHtcbiAgICAgIGNvbnN0ICRlbGVtID0gJCh0aGlzLiRzY3JvbGxzW2ldKTtcbiAgICAgICRlbGVtLmRhdGEoJ3Njcm9sbHMnLCBuZXcgU2Nyb2xsRWxlbXMoJGVsZW0pKTtcbiAgICB9KTtcbiAgfVxuXG4gIF9tYXBPcnBoYW5zKCkge1xuICAgIHRoaXMuJG9ycGhhbnMuZWFjaCgoZWxlbSkgPT4ge1xuICAgICAgdGhpcy5vcnBoYW5BcnJheS5wdXNoKGVsZW0pO1xuICAgIH0pO1xuICAgIHRoaXMub3JwaGFuQXJyYXkubWFwKChvcnBoYW4pID0+IHtcbiAgICAgIGF2b2lkT3JwaGFuKG9ycGhhbik7XG4gICAgfSk7XG4gIH1cblxuICBfbWFwU2Nyb2xsVG9zKCkge1xuICAgIHRoaXMuJHNjcm9sbFRvcy5lYWNoKChlbGVtLCBpKSA9PiB7XG4gICAgICBjb25zdCAkZWxlbSA9ICQodGhpcy4kc2Nyb2xsVG9zW2ldKTtcbiAgICAgICRlbGVtLmRhdGEoJ3Njcm9sbFRvJywgbmV3IFNjcm9sbFRvKCRlbGVtKSk7XG4gICAgfSk7XG4gIH1cblxuICBfcHJpbnRSZWNpcGUoKSB7XG4gICAgJCgnLmpzLXByaW50LXJlY2lwZScpLm9uKCdjbGljaycsIChlKSA9PiB7XG4gICAgICBlLnByZXZlbnREZWZhdWx0KCk7XG4gICAgICB3aW5kb3cucHJpbnQoKTtcbiAgICB9KTtcbiAgfVxufVxuIl19
+},{"./components/MobileNav":2,"./components/Navigation":3,"./components/ScrollElems":4,"./components/Search":5,"./components/SearchButton":6,"./utils/avoid-orphan":7,"./utils/emitter":8,"./utils/resizer":9,"./utils/scroll-to":10,"./utils/scroller":11,"lazysizes":16,"properjs-hobo":18}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -633,49 +651,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _properjsHobo = require('properjs-hobo');
-
-var _properjsHobo2 = _interopRequireDefault(_properjsHobo);
-
-var _properjsImageloader = require('properjs-imageloader');
-
-var _properjsImageloader2 = _interopRequireDefault(_properjsImageloader);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var isElementLoadable = function isElementLoadable(el) {
-  if (el) {
-    var bounds = el.getBoundingClientRect();
-    var initialLoad = (0, _properjsHobo2.default)(el).data('init-load') ? true : false;
-    return bounds.top < window.innerHeight * 1.5 || initialLoad;
-  }
-};
-
-/* eslint-disable no-param-reassign */
-var loadImages = function loadImages(images, handler) {
-  // Normalize the handler
-  handler = handler || isElementLoadable;
-
-  // Normalize the images
-  images = images;
-
-  return new _properjsImageloader2.default({
-    elements: images,
-    property: 'data-img-src',
-    executor: handler
-  });
-};
-/* eslint-enable no-param-reassign */
-
-exports.default = loadImages;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvYWQtaW1hZ2VzLmpzIl0sIm5hbWVzIjpbImlzRWxlbWVudExvYWRhYmxlIiwiZWwiLCJib3VuZHMiLCJnZXRCb3VuZGluZ0NsaWVudFJlY3QiLCJpbml0aWFsTG9hZCIsImRhdGEiLCJ0b3AiLCJ3aW5kb3ciLCJpbm5lckhlaWdodCIsImxvYWRJbWFnZXMiLCJpbWFnZXMiLCJoYW5kbGVyIiwiZWxlbWVudHMiLCJwcm9wZXJ0eSIsImV4ZWN1dG9yIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTs7OztBQUNBOzs7Ozs7QUFFQSxJQUFNQSxvQkFBb0IsU0FBcEJBLGlCQUFvQixDQUFDQyxFQUFELEVBQVE7QUFDaEMsTUFBSUEsRUFBSixFQUFRO0FBQ04sUUFBTUMsU0FBU0QsR0FBR0UscUJBQUgsRUFBZjtBQUNBLFFBQU1DLGNBQWMsNEJBQUVILEVBQUYsRUFBTUksSUFBTixDQUFXLFdBQVgsSUFBMEIsSUFBMUIsR0FBaUMsS0FBckQ7QUFDQSxXQUFRSCxPQUFPSSxHQUFQLEdBQWNDLE9BQU9DLFdBQVAsR0FBcUIsR0FBbkMsSUFBMkNKLFdBQW5EO0FBQ0Q7QUFDRixDQU5EOztBQVFBO0FBQ0EsSUFBTUssYUFBYSxTQUFiQSxVQUFhLENBQUNDLE1BQUQsRUFBU0MsT0FBVCxFQUFxQjtBQUN0QztBQUNBQSxZQUFXQSxXQUFXWCxpQkFBdEI7O0FBRUE7QUFDQVUsV0FBVUEsTUFBVjs7QUFFQSxTQUFPLGtDQUFnQjtBQUNyQkUsY0FBVUYsTUFEVztBQUVyQkcsY0FBVSxjQUZXO0FBR3JCQyxjQUFVSDtBQUhXLEdBQWhCLENBQVA7QUFLRCxDQVpEO0FBYUE7O2tCQUVlRixVIiwiZmlsZSI6ImxvYWQtaW1hZ2VzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICQgZnJvbSAncHJvcGVyanMtaG9ibyc7XG5pbXBvcnQgSW1hZ2VMb2FkZXIgZnJvbSAncHJvcGVyanMtaW1hZ2Vsb2FkZXInO1xuXG5jb25zdCBpc0VsZW1lbnRMb2FkYWJsZSA9IChlbCkgPT4ge1xuICBpZiAoZWwpIHtcbiAgICBjb25zdCBib3VuZHMgPSBlbC5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKTtcbiAgICBjb25zdCBpbml0aWFsTG9hZCA9ICQoZWwpLmRhdGEoJ2luaXQtbG9hZCcpID8gdHJ1ZSA6IGZhbHNlO1xuICAgIHJldHVybiAoYm91bmRzLnRvcCA8ICh3aW5kb3cuaW5uZXJIZWlnaHQgKiAxLjUpIHx8IGluaXRpYWxMb2FkKTtcbiAgfVxufTtcblxuLyogZXNsaW50LWRpc2FibGUgbm8tcGFyYW0tcmVhc3NpZ24gKi9cbmNvbnN0IGxvYWRJbWFnZXMgPSAoaW1hZ2VzLCBoYW5kbGVyKSA9PiB7XG4gIC8vIE5vcm1hbGl6ZSB0aGUgaGFuZGxlclxuICBoYW5kbGVyID0gKGhhbmRsZXIgfHwgaXNFbGVtZW50TG9hZGFibGUpO1xuXG4gIC8vIE5vcm1hbGl6ZSB0aGUgaW1hZ2VzXG4gIGltYWdlcyA9IChpbWFnZXMpO1xuXG4gIHJldHVybiBuZXcgSW1hZ2VMb2FkZXIoe1xuICAgIGVsZW1lbnRzOiBpbWFnZXMsXG4gICAgcHJvcGVydHk6ICdkYXRhLWltZy1zcmMnLFxuICAgIGV4ZWN1dG9yOiBoYW5kbGVyLFxuICB9KTtcbn07XG4vKiBlc2xpbnQtZW5hYmxlIG5vLXBhcmFtLXJlYXNzaWduICovXG5cbmV4cG9ydCBkZWZhdWx0IGxvYWRJbWFnZXM7XG4iXX0=
-},{"properjs-hobo":18,"properjs-imageloader":28}],10:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _properjsResizecontroller = require('properjs-resizecontroller');
 
 var _properjsResizecontroller2 = _interopRequireDefault(_properjsResizecontroller);
@@ -686,7 +661,7 @@ var resizer = new _properjsResizecontroller2.default();
 
 exports.default = resizer;
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlc2l6ZXIuanMiXSwibmFtZXMiOlsicmVzaXplciJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7Ozs7OztBQUVBLElBQU1BLFVBQVUsd0NBQWhCOztrQkFFZUEsTyIsImZpbGUiOiJyZXNpemVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlc2l6ZUNvbnRyb2xsZXIgZnJvbSAncHJvcGVyanMtcmVzaXplY29udHJvbGxlcic7XG5cbmNvbnN0IHJlc2l6ZXIgPSBuZXcgUmVzaXplQ29udHJvbGxlcigpO1xuXG5leHBvcnQgZGVmYXVsdCByZXNpemVyO1xuIl19
-},{"properjs-resizecontroller":30}],11:[function(require,module,exports){
+},{"properjs-resizecontroller":29}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -742,7 +717,7 @@ var ScrollTo = function () {
 
 exports.default = ScrollTo;
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNjcm9sbC10by5qcyJdLCJuYW1lcyI6WyJTY3JvbGxUbyIsImVsZW1lbnQiLCIkZWxlbSIsInRhcmdldE5hbWUiLCJkYXRhIiwidGFyZ2V0cyIsImRvY3VtZW50IiwiZ2V0RWxlbWVudHNCeUNsYXNzTmFtZSIsIiR0YXJnZXQiLCJzcGVlZCIsImJpbmRFdmVudHMiLCJvbiIsInNjcm9sbFRvRWxlbSIsInRvIiwid2luZG93Iiwic2Nyb2xsVG8iLCJlYXNlIiwiZWFzZU91dCJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQTs7OztBQUNBOztBQUNBOzs7Ozs7OztJQUVxQkEsUTtBQUNuQixvQkFBWUMsT0FBWixFQUFxQjtBQUFBOztBQUNuQixTQUFLQyxLQUFMLEdBQWEsNEJBQUVELE9BQUYsQ0FBYjtBQUNBLFNBQUtFLFVBQUwsR0FBa0IsNEJBQUVGLE9BQUYsRUFBV0csSUFBWCxDQUFnQixlQUFoQixDQUFsQjtBQUNBLFNBQUtDLE9BQUwsR0FBZUMsU0FBU0Msc0JBQVQsdUJBQW9ELEtBQUtKLFVBQXpELENBQWY7QUFDQSxTQUFLSyxPQUFMLEdBQWUsS0FBS0gsT0FBTCxDQUFhLENBQWIsQ0FBZjtBQUNBLFNBQUtJLEtBQUwsR0FBYSw0QkFBRVIsT0FBRixFQUFXRyxJQUFYLENBQWdCLGNBQWhCLElBQWtDLENBQS9DO0FBQ0EsU0FBS00sVUFBTDtBQUNEOzs7O2lDQUVZO0FBQUE7O0FBQ1gsV0FBS1IsS0FBTCxDQUFXUyxFQUFYLENBQWMsT0FBZCxFQUF1QixZQUFNO0FBQzNCLGNBQUtDLFlBQUw7QUFDRCxPQUZEO0FBR0Q7OzttQ0FFYztBQUNiLHNCQUFVQyxFQUFWLENBQWFDLE1BQWIsRUFBcUIsS0FBS0wsS0FBMUIsRUFBaUMsRUFBRU0sVUFBVSxLQUFLUCxPQUFqQixFQUEwQlEsTUFBTSxhQUFPQyxPQUF2QyxFQUFqQztBQUNEOzs7Ozs7a0JBbEJrQmpCLFEiLCJmaWxlIjoic2Nyb2xsLXRvLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICQgZnJvbSAncHJvcGVyanMtaG9ibyc7XG5pbXBvcnQgeyBUd2VlbkxpdGUsIFBvd2VyMiB9IGZyb20gJ2dzYXAnO1xuaW1wb3J0IHNjcm9sbFRvIGZyb20gJ2dzYXAvU2Nyb2xsVG9QbHVnaW4nO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBTY3JvbGxUbyB7XG4gIGNvbnN0cnVjdG9yKGVsZW1lbnQpIHtcbiAgICB0aGlzLiRlbGVtID0gJChlbGVtZW50KTtcbiAgICB0aGlzLnRhcmdldE5hbWUgPSAkKGVsZW1lbnQpLmRhdGEoJ3Njcm9sbC10YXJnZXQnKTtcbiAgICB0aGlzLnRhcmdldHMgPSBkb2N1bWVudC5nZXRFbGVtZW50c0J5Q2xhc3NOYW1lKGBqcy1zY3JvbGwtdGFyZ2V0LSR7dGhpcy50YXJnZXROYW1lfWApO1xuICAgIHRoaXMuJHRhcmdldCA9IHRoaXMudGFyZ2V0c1swXTtcbiAgICB0aGlzLnNwZWVkID0gJChlbGVtZW50KS5kYXRhKCdzY3JvbGwtc3BlZWQnKSB8IDE7XG4gICAgdGhpcy5iaW5kRXZlbnRzKCk7XG4gIH1cblxuICBiaW5kRXZlbnRzKCkge1xuICAgIHRoaXMuJGVsZW0ub24oJ2NsaWNrJywgKCkgPT4ge1xuICAgICAgdGhpcy5zY3JvbGxUb0VsZW0oKTtcbiAgICB9KTtcbiAgfVxuXG4gIHNjcm9sbFRvRWxlbSgpIHtcbiAgICBUd2VlbkxpdGUudG8od2luZG93LCB0aGlzLnNwZWVkLCB7IHNjcm9sbFRvOiB0aGlzLiR0YXJnZXQsIGVhc2U6IFBvd2VyMi5lYXNlT3V0IH0pO1xuICB9XG59XG4iXX0=
-},{"gsap":16,"gsap/ScrollToPlugin":14,"properjs-hobo":18}],12:[function(require,module,exports){
+},{"gsap":15,"gsap/ScrollToPlugin":13,"properjs-hobo":18}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -759,7 +734,7 @@ var scroller = new _properjsScrollcontroller2.default();
 
 exports.default = scroller;
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNjcm9sbGVyLmpzIl0sIm5hbWVzIjpbInNjcm9sbGVyIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTs7Ozs7O0FBRUEsSUFBTUEsV0FBVyx3Q0FBakI7O2tCQUVlQSxRIiwiZmlsZSI6InNjcm9sbGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFNjcm9sbENvbnRyb2xsZXIgZnJvbSAncHJvcGVyanMtc2Nyb2xsY29udHJvbGxlcic7XG5cbmNvbnN0IHNjcm9sbGVyID0gbmV3IFNjcm9sbENvbnRyb2xsZXIoKTtcblxuZXhwb3J0IGRlZmF1bHQgc2Nyb2xsZXI7XG4iXX0=
-},{"properjs-scrollcontroller":31}],13:[function(require,module,exports){
+},{"properjs-scrollcontroller":30}],12:[function(require,module,exports){
 'use strict';
 
 var _App = require('./app/App');
@@ -769,8 +744,8 @@ var _App2 = _interopRequireDefault(_App);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.app = new _App2.default();
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZha2VfMzAwNDYzODcuanMiXSwibmFtZXMiOlsid2luZG93IiwiYXBwIl0sIm1hcHBpbmdzIjoiOztBQUFBOzs7Ozs7QUFFQUEsT0FBT0MsR0FBUCxHQUFhLG1CQUFiIiwiZmlsZSI6ImZha2VfMzAwNDYzODcuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgQXBwIGZyb20gJy4vYXBwL0FwcCc7XG5cbndpbmRvdy5hcHAgPSBuZXcgQXBwKCk7XG4iXX0=
-},{"./app/App":1}],14:[function(require,module,exports){
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZha2VfOTI1NjUzNS5qcyJdLCJuYW1lcyI6WyJ3aW5kb3ciLCJhcHAiXSwibWFwcGluZ3MiOiI7O0FBQUE7Ozs7OztBQUVBQSxPQUFPQyxHQUFQLEdBQWEsbUJBQWIiLCJmaWxlIjoiZmFrZV85MjU2NTM1LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEFwcCBmcm9tICcuL2FwcC9BcHAnO1xuXG53aW5kb3cuYXBwID0gbmV3IEFwcCgpO1xuIl19
+},{"./app/App":1}],13:[function(require,module,exports){
 (function (global){
 /*!
  * VERSION: 1.9.0
@@ -956,7 +931,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 	}
 }("ScrollToPlugin"));
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"gsap/TweenLite":15}],15:[function(require,module,exports){
+},{"gsap/TweenLite":14}],14:[function(require,module,exports){
 (function (global){
 /*!
  * VERSION: 1.20.2
@@ -2889,7 +2864,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenLite");
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 (function (global){
 /*!
  * VERSION: 1.20.2
@@ -10817,6 +10792,704 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenMax");
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],16:[function(require,module,exports){
+(function(window, factory) {
+	var lazySizes = factory(window, window.document);
+	window.lazySizes = lazySizes;
+	if(typeof module == 'object' && module.exports){
+		module.exports = lazySizes;
+	}
+}(window, function l(window, document) {
+	'use strict';
+	/*jshint eqnull:true */
+	if(!document.getElementsByClassName){return;}
+
+	var lazysizes, lazySizesConfig;
+
+	var docElem = document.documentElement;
+
+	var Date = window.Date;
+
+	var supportPicture = window.HTMLPictureElement;
+
+	var _addEventListener = 'addEventListener';
+
+	var _getAttribute = 'getAttribute';
+
+	var addEventListener = window[_addEventListener];
+
+	var setTimeout = window.setTimeout;
+
+	var requestAnimationFrame = window.requestAnimationFrame || setTimeout;
+
+	var requestIdleCallback = window.requestIdleCallback;
+
+	var regPicture = /^picture$/i;
+
+	var loadEvents = ['load', 'error', 'lazyincluded', '_lazyloaded'];
+
+	var regClassCache = {};
+
+	var forEach = Array.prototype.forEach;
+
+	var hasClass = function(ele, cls) {
+		if(!regClassCache[cls]){
+			regClassCache[cls] = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+		}
+		return regClassCache[cls].test(ele[_getAttribute]('class') || '') && regClassCache[cls];
+	};
+
+	var addClass = function(ele, cls) {
+		if (!hasClass(ele, cls)){
+			ele.setAttribute('class', (ele[_getAttribute]('class') || '').trim() + ' ' + cls);
+		}
+	};
+
+	var removeClass = function(ele, cls) {
+		var reg;
+		if ((reg = hasClass(ele,cls))) {
+			ele.setAttribute('class', (ele[_getAttribute]('class') || '').replace(reg, ' '));
+		}
+	};
+
+	var addRemoveLoadEvents = function(dom, fn, add){
+		var action = add ? _addEventListener : 'removeEventListener';
+		if(add){
+			addRemoveLoadEvents(dom, fn);
+		}
+		loadEvents.forEach(function(evt){
+			dom[action](evt, fn);
+		});
+	};
+
+	var triggerEvent = function(elem, name, detail, noBubbles, noCancelable){
+		var event = document.createEvent('CustomEvent');
+
+		if(!detail){
+			detail = {};
+		}
+
+		detail.instance = lazysizes;
+
+		event.initCustomEvent(name, !noBubbles, !noCancelable, detail);
+
+		elem.dispatchEvent(event);
+		return event;
+	};
+
+	var updatePolyfill = function (el, full){
+		var polyfill;
+		if( !supportPicture && ( polyfill = (window.picturefill || lazySizesConfig.pf) ) ){
+			polyfill({reevaluate: true, elements: [el]});
+		} else if(full && full.src){
+			el.src = full.src;
+		}
+	};
+
+	var getCSS = function (elem, style){
+		return (getComputedStyle(elem, null) || {})[style];
+	};
+
+	var getWidth = function(elem, parent, width){
+		width = width || elem.offsetWidth;
+
+		while(width < lazySizesConfig.minSize && parent && !elem._lazysizesWidth){
+			width =  parent.offsetWidth;
+			parent = parent.parentNode;
+		}
+
+		return width;
+	};
+
+	var rAF = (function(){
+		var running, waiting;
+		var firstFns = [];
+		var secondFns = [];
+		var fns = firstFns;
+
+		var run = function(){
+			var runFns = fns;
+
+			fns = firstFns.length ? secondFns : firstFns;
+
+			running = true;
+			waiting = false;
+
+			while(runFns.length){
+				runFns.shift()();
+			}
+
+			running = false;
+		};
+
+		var rafBatch = function(fn, queue){
+			if(running && !queue){
+				fn.apply(this, arguments);
+			} else {
+				fns.push(fn);
+
+				if(!waiting){
+					waiting = true;
+					(document.hidden ? setTimeout : requestAnimationFrame)(run);
+				}
+			}
+		};
+
+		rafBatch._lsFlush = run;
+
+		return rafBatch;
+	})();
+
+	var rAFIt = function(fn, simple){
+		return simple ?
+			function() {
+				rAF(fn);
+			} :
+			function(){
+				var that = this;
+				var args = arguments;
+				rAF(function(){
+					fn.apply(that, args);
+				});
+			}
+		;
+	};
+
+	var throttle = function(fn){
+		var running;
+		var lastTime = 0;
+		var gDelay = 125;
+		var RIC_DEFAULT_TIMEOUT = 666;
+		var rICTimeout = RIC_DEFAULT_TIMEOUT;
+		var run = function(){
+			running = false;
+			lastTime = Date.now();
+			fn();
+		};
+		var idleCallback = requestIdleCallback ?
+			function(){
+				requestIdleCallback(run, {timeout: rICTimeout});
+				if(rICTimeout !== RIC_DEFAULT_TIMEOUT){
+					rICTimeout = RIC_DEFAULT_TIMEOUT;
+				}
+			}:
+			rAFIt(function(){
+				setTimeout(run);
+			}, true)
+		;
+
+		return function(isPriority){
+			var delay;
+			if((isPriority = isPriority === true)){
+				rICTimeout = 44;
+			}
+
+			if(running){
+				return;
+			}
+
+			running =  true;
+
+			delay = gDelay - (Date.now() - lastTime);
+
+			if(delay < 0){
+				delay = 0;
+			}
+
+			if(isPriority || (delay < 9 && requestIdleCallback)){
+				idleCallback();
+			} else {
+				setTimeout(idleCallback, delay);
+			}
+		};
+	};
+
+	//based on http://modernjavascript.blogspot.de/2013/08/building-better-debounce.html
+	var debounce = function(func) {
+		var timeout, timestamp;
+		var wait = 99;
+		var run = function(){
+			timeout = null;
+			func();
+		};
+		var later = function() {
+			var last = Date.now() - timestamp;
+
+			if (last < wait) {
+				setTimeout(later, wait - last);
+			} else {
+				(requestIdleCallback || run)(run);
+			}
+		};
+
+		return function() {
+			timestamp = Date.now();
+
+			if (!timeout) {
+				timeout = setTimeout(later, wait);
+			}
+		};
+	};
+
+
+	var loader = (function(){
+		var preloadElems, isCompleted, resetPreloadingTimer, loadMode, started;
+
+		var eLvW, elvH, eLtop, eLleft, eLright, eLbottom;
+
+		var defaultExpand, preloadExpand, hFac;
+
+		var regImg = /^img$/i;
+		var regIframe = /^iframe$/i;
+
+		var supportScroll = ('onscroll' in window) && !(/glebot/.test(navigator.userAgent));
+
+		var shrinkExpand = 0;
+		var currentExpand = 0;
+
+		var isLoading = 0;
+		var lowRuns = -1;
+
+		var resetPreloading = function(e){
+			isLoading--;
+			if(e && e.target){
+				addRemoveLoadEvents(e.target, resetPreloading);
+			}
+
+			if(!e || isLoading < 0 || !e.target){
+				isLoading = 0;
+			}
+		};
+
+		var isNestedVisible = function(elem, elemExpand){
+			var outerRect;
+			var parent = elem;
+			var visible = getCSS(document.body, 'visibility') == 'hidden' || getCSS(elem, 'visibility') != 'hidden';
+
+			eLtop -= elemExpand;
+			eLbottom += elemExpand;
+			eLleft -= elemExpand;
+			eLright += elemExpand;
+
+			while(visible && (parent = parent.offsetParent) && parent != document.body && parent != docElem){
+				visible = ((getCSS(parent, 'opacity') || 1) > 0);
+
+				if(visible && getCSS(parent, 'overflow') != 'visible'){
+					outerRect = parent.getBoundingClientRect();
+					visible = eLright > outerRect.left &&
+						eLleft < outerRect.right &&
+						eLbottom > outerRect.top - 1 &&
+						eLtop < outerRect.bottom + 1
+					;
+				}
+			}
+
+			return visible;
+		};
+
+		var checkElements = function() {
+			var eLlen, i, rect, autoLoadElem, loadedSomething, elemExpand, elemNegativeExpand, elemExpandVal, beforeExpandVal;
+
+			var lazyloadElems = lazysizes.elements;
+
+			if((loadMode = lazySizesConfig.loadMode) && isLoading < 8 && (eLlen = lazyloadElems.length)){
+
+				i = 0;
+
+				lowRuns++;
+
+				if(preloadExpand == null){
+					if(!('expand' in lazySizesConfig)){
+						lazySizesConfig.expand = docElem.clientHeight > 500 && docElem.clientWidth > 500 ? 500 : 370;
+					}
+
+					defaultExpand = lazySizesConfig.expand;
+					preloadExpand = defaultExpand * lazySizesConfig.expFactor;
+				}
+
+				if(currentExpand < preloadExpand && isLoading < 1 && lowRuns > 2 && loadMode > 2 && !document.hidden){
+					currentExpand = preloadExpand;
+					lowRuns = 0;
+				} else if(loadMode > 1 && lowRuns > 1 && isLoading < 6){
+					currentExpand = defaultExpand;
+				} else {
+					currentExpand = shrinkExpand;
+				}
+
+				for(; i < eLlen; i++){
+
+					if(!lazyloadElems[i] || lazyloadElems[i]._lazyRace){continue;}
+
+					if(!supportScroll){unveilElement(lazyloadElems[i]);continue;}
+
+					if(!(elemExpandVal = lazyloadElems[i][_getAttribute]('data-expand')) || !(elemExpand = elemExpandVal * 1)){
+						elemExpand = currentExpand;
+					}
+
+					if(beforeExpandVal !== elemExpand){
+						eLvW = innerWidth + (elemExpand * hFac);
+						elvH = innerHeight + elemExpand;
+						elemNegativeExpand = elemExpand * -1;
+						beforeExpandVal = elemExpand;
+					}
+
+					rect = lazyloadElems[i].getBoundingClientRect();
+
+					if ((eLbottom = rect.bottom) >= elemNegativeExpand &&
+						(eLtop = rect.top) <= elvH &&
+						(eLright = rect.right) >= elemNegativeExpand * hFac &&
+						(eLleft = rect.left) <= eLvW &&
+						(eLbottom || eLright || eLleft || eLtop) &&
+						(lazySizesConfig.loadHidden || getCSS(lazyloadElems[i], 'visibility') != 'hidden') &&
+						((isCompleted && isLoading < 3 && !elemExpandVal && (loadMode < 3 || lowRuns < 4)) || isNestedVisible(lazyloadElems[i], elemExpand))){
+						unveilElement(lazyloadElems[i]);
+						loadedSomething = true;
+						if(isLoading > 9){break;}
+					} else if(!loadedSomething && isCompleted && !autoLoadElem &&
+						isLoading < 4 && lowRuns < 4 && loadMode > 2 &&
+						(preloadElems[0] || lazySizesConfig.preloadAfterLoad) &&
+						(preloadElems[0] || (!elemExpandVal && ((eLbottom || eLright || eLleft || eLtop) || lazyloadElems[i][_getAttribute](lazySizesConfig.sizesAttr) != 'auto')))){
+						autoLoadElem = preloadElems[0] || lazyloadElems[i];
+					}
+				}
+
+				if(autoLoadElem && !loadedSomething){
+					unveilElement(autoLoadElem);
+				}
+			}
+		};
+
+		var throttledCheckElements = throttle(checkElements);
+
+		var switchLoadingClass = function(e){
+			addClass(e.target, lazySizesConfig.loadedClass);
+			removeClass(e.target, lazySizesConfig.loadingClass);
+			addRemoveLoadEvents(e.target, rafSwitchLoadingClass);
+			triggerEvent(e.target, 'lazyloaded');
+		};
+		var rafedSwitchLoadingClass = rAFIt(switchLoadingClass);
+		var rafSwitchLoadingClass = function(e){
+			rafedSwitchLoadingClass({target: e.target});
+		};
+
+		var changeIframeSrc = function(elem, src){
+			try {
+				elem.contentWindow.location.replace(src);
+			} catch(e){
+				elem.src = src;
+			}
+		};
+
+		var handleSources = function(source){
+			var customMedia;
+
+			var sourceSrcset = source[_getAttribute](lazySizesConfig.srcsetAttr);
+
+			if( (customMedia = lazySizesConfig.customMedia[source[_getAttribute]('data-media') || source[_getAttribute]('media')]) ){
+				source.setAttribute('media', customMedia);
+			}
+
+			if(sourceSrcset){
+				source.setAttribute('srcset', sourceSrcset);
+			}
+		};
+
+		var lazyUnveil = rAFIt(function (elem, detail, isAuto, sizes, isImg){
+			var src, srcset, parent, isPicture, event, firesLoad;
+
+			if(!(event = triggerEvent(elem, 'lazybeforeunveil', detail)).defaultPrevented){
+
+				if(sizes){
+					if(isAuto){
+						addClass(elem, lazySizesConfig.autosizesClass);
+					} else {
+						elem.setAttribute('sizes', sizes);
+					}
+				}
+
+				srcset = elem[_getAttribute](lazySizesConfig.srcsetAttr);
+				src = elem[_getAttribute](lazySizesConfig.srcAttr);
+
+				if(isImg) {
+					parent = elem.parentNode;
+					isPicture = parent && regPicture.test(parent.nodeName || '');
+				}
+
+				firesLoad = detail.firesLoad || (('src' in elem) && (srcset || src || isPicture));
+
+				event = {target: elem};
+
+				if(firesLoad){
+					addRemoveLoadEvents(elem, resetPreloading, true);
+					clearTimeout(resetPreloadingTimer);
+					resetPreloadingTimer = setTimeout(resetPreloading, 2500);
+
+					addClass(elem, lazySizesConfig.loadingClass);
+					addRemoveLoadEvents(elem, rafSwitchLoadingClass, true);
+				}
+
+				if(isPicture){
+					forEach.call(parent.getElementsByTagName('source'), handleSources);
+				}
+
+				if(srcset){
+					elem.setAttribute('srcset', srcset);
+				} else if(src && !isPicture){
+					if(regIframe.test(elem.nodeName)){
+						changeIframeSrc(elem, src);
+					} else {
+						elem.src = src;
+					}
+				}
+
+				if(isImg && (srcset || isPicture)){
+					updatePolyfill(elem, {src: src});
+				}
+			}
+
+			if(elem._lazyRace){
+				delete elem._lazyRace;
+			}
+			removeClass(elem, lazySizesConfig.lazyClass);
+
+			rAF(function(){
+				if( !firesLoad || (elem.complete && elem.naturalWidth > 1)){
+					if(firesLoad){
+						resetPreloading(event);
+					} else {
+						isLoading--;
+					}
+					switchLoadingClass(event);
+				}
+			}, true);
+		});
+
+		var unveilElement = function (elem){
+			var detail;
+
+			var isImg = regImg.test(elem.nodeName);
+
+			//allow using sizes="auto", but don't use. it's invalid. Use data-sizes="auto" or a valid value for sizes instead (i.e.: sizes="80vw")
+			var sizes = isImg && (elem[_getAttribute](lazySizesConfig.sizesAttr) || elem[_getAttribute]('sizes'));
+			var isAuto = sizes == 'auto';
+
+			if( (isAuto || !isCompleted) && isImg && (elem[_getAttribute]('src') || elem.srcset) && !elem.complete && !hasClass(elem, lazySizesConfig.errorClass)){return;}
+
+			detail = triggerEvent(elem, 'lazyunveilread').detail;
+
+			if(isAuto){
+				 autoSizer.updateElem(elem, true, elem.offsetWidth);
+			}
+
+			elem._lazyRace = true;
+			isLoading++;
+
+			lazyUnveil(elem, detail, isAuto, sizes, isImg);
+		};
+
+		var onload = function(){
+			if(isCompleted){return;}
+			if(Date.now() - started < 999){
+				setTimeout(onload, 999);
+				return;
+			}
+			var afterScroll = debounce(function(){
+				lazySizesConfig.loadMode = 3;
+				throttledCheckElements();
+			});
+
+			isCompleted = true;
+
+			lazySizesConfig.loadMode = 3;
+
+			throttledCheckElements();
+
+			addEventListener('scroll', function(){
+				if(lazySizesConfig.loadMode == 3){
+					lazySizesConfig.loadMode = 2;
+				}
+				afterScroll();
+			}, true);
+		};
+
+		return {
+			_: function(){
+				started = Date.now();
+
+				lazysizes.elements = document.getElementsByClassName(lazySizesConfig.lazyClass);
+				preloadElems = document.getElementsByClassName(lazySizesConfig.lazyClass + ' ' + lazySizesConfig.preloadClass);
+				hFac = lazySizesConfig.hFac;
+
+				addEventListener('scroll', throttledCheckElements, true);
+
+				addEventListener('resize', throttledCheckElements, true);
+
+				if(window.MutationObserver){
+					new MutationObserver( throttledCheckElements ).observe( docElem, {childList: true, subtree: true, attributes: true} );
+				} else {
+					docElem[_addEventListener]('DOMNodeInserted', throttledCheckElements, true);
+					docElem[_addEventListener]('DOMAttrModified', throttledCheckElements, true);
+					setInterval(throttledCheckElements, 999);
+				}
+
+				addEventListener('hashchange', throttledCheckElements, true);
+
+				//, 'fullscreenchange'
+				['focus', 'mouseover', 'click', 'load', 'transitionend', 'animationend', 'webkitAnimationEnd'].forEach(function(name){
+					document[_addEventListener](name, throttledCheckElements, true);
+				});
+
+				if((/d$|^c/.test(document.readyState))){
+					onload();
+				} else {
+					addEventListener('load', onload);
+					document[_addEventListener]('DOMContentLoaded', throttledCheckElements);
+					setTimeout(onload, 20000);
+				}
+
+				if(lazysizes.elements.length){
+					checkElements();
+					rAF._lsFlush();
+				} else {
+					throttledCheckElements();
+				}
+			},
+			checkElems: throttledCheckElements,
+			unveil: unveilElement
+		};
+	})();
+
+
+	var autoSizer = (function(){
+		var autosizesElems;
+
+		var sizeElement = rAFIt(function(elem, parent, event, width){
+			var sources, i, len;
+			elem._lazysizesWidth = width;
+			width += 'px';
+
+			elem.setAttribute('sizes', width);
+
+			if(regPicture.test(parent.nodeName || '')){
+				sources = parent.getElementsByTagName('source');
+				for(i = 0, len = sources.length; i < len; i++){
+					sources[i].setAttribute('sizes', width);
+				}
+			}
+
+			if(!event.detail.dataAttr){
+				updatePolyfill(elem, event.detail);
+			}
+		});
+		var getSizeElement = function (elem, dataAttr, width){
+			var event;
+			var parent = elem.parentNode;
+
+			if(parent){
+				width = getWidth(elem, parent, width);
+				event = triggerEvent(elem, 'lazybeforesizes', {width: width, dataAttr: !!dataAttr});
+
+				if(!event.defaultPrevented){
+					width = event.detail.width;
+
+					if(width && width !== elem._lazysizesWidth){
+						sizeElement(elem, parent, event, width);
+					}
+				}
+			}
+		};
+
+		var updateElementsSizes = function(){
+			var i;
+			var len = autosizesElems.length;
+			if(len){
+				i = 0;
+
+				for(; i < len; i++){
+					getSizeElement(autosizesElems[i]);
+				}
+			}
+		};
+
+		var debouncedUpdateElementsSizes = debounce(updateElementsSizes);
+
+		return {
+			_: function(){
+				autosizesElems = document.getElementsByClassName(lazySizesConfig.autosizesClass);
+				addEventListener('resize', debouncedUpdateElementsSizes);
+			},
+			checkElems: debouncedUpdateElementsSizes,
+			updateElem: getSizeElement
+		};
+	})();
+
+	var init = function(){
+		if(!init.i){
+			init.i = true;
+			autoSizer._();
+			loader._();
+		}
+	};
+
+	(function(){
+		var prop;
+
+		var lazySizesDefaults = {
+			lazyClass: 'lazyload',
+			loadedClass: 'lazyloaded',
+			loadingClass: 'lazyloading',
+			preloadClass: 'lazypreload',
+			errorClass: 'lazyerror',
+			//strictClass: 'lazystrict',
+			autosizesClass: 'lazyautosizes',
+			srcAttr: 'data-src',
+			srcsetAttr: 'data-srcset',
+			sizesAttr: 'data-sizes',
+			//preloadAfterLoad: false,
+			minSize: 40,
+			customMedia: {},
+			init: true,
+			expFactor: 1.5,
+			hFac: 0.8,
+			loadMode: 2,
+			loadHidden: true,
+		};
+
+		lazySizesConfig = window.lazySizesConfig || window.lazysizesConfig || {};
+
+		for(prop in lazySizesDefaults){
+			if(!(prop in lazySizesConfig)){
+				lazySizesConfig[prop] = lazySizesDefaults[prop];
+			}
+		}
+
+		window.lazySizesConfig = lazySizesConfig;
+
+		setTimeout(function(){
+			if(lazySizesConfig.init){
+				init();
+			}
+		});
+	})();
+
+	lazysizes = {
+		cfg: lazySizesConfig,
+		autoSizer: autoSizer,
+		loader: loader,
+		init: init,
+		uP: updatePolyfill,
+		aC: addClass,
+		rC: removeClass,
+		hC: hasClass,
+		fire: triggerEvent,
+		gW: getWidth,
+		rAF: rAF,
+	};
+
+	return lazysizes;
+}
+));
+
 },{}],17:[function(require,module,exports){
 /*!
  *
@@ -11783,7 +12456,7 @@ module.exports = function ( events, selector, callback ) {
 
     return this;
 };
-},{"../utils":27,"properjs-matchelement":29}],26:[function(require,module,exports){
+},{"../utils":27,"properjs-matchelement":28}],26:[function(require,module,exports){
 var utils = require( "../utils" );
 
 
@@ -12185,350 +12858,6 @@ module.exports = {
 },{}],28:[function(require,module,exports){
 /*!
  *
- * Handle lazy-loading images with contextual load conditions.
- *
- * @ImageLoader
- * @author: kitajchuk
- *
- *
- */
-(function ( factory ) {
-
-    if ( typeof exports === "object" && typeof module !== "undefined" ) {
-        module.exports = factory();
-
-    } else if ( typeof window !== "undefined" ) {
-        window.ImageLoader = factory();
-    }
-
-})(function () {
-
-    var Controller = require( "properjs-controller" );
-
-
-    /**
-     *
-     * Handle lazy-loading images with unique callback conditions
-     * @memberof! <global>
-     * @requires raf
-     * @constructor ImageLoader
-     * @param {object} options Controller settings
-     * <ul>
-     * <li>elements - The collection of elements to load against</li>
-     * <li>property - The property to pull the image source from</li>
-     * <li>transitionDelay - The timeout before transition starts</li>
-     * <li>transitionDuration - The length of the animation</li>
-     * </ul>
-     *
-     */
-    var ImageLoader = function ( options ) {
-        var self = this;
-
-        if ( !options ) {
-            throw new Error( "ImageLoader Class requires options to be passed" );
-        }
-
-        // Up, up and away...
-        Controller.call( this );
-
-        /**
-         *
-         * The method to determine if an image should load itself
-         * @memberof ImageLoader
-         * @member _executor
-         * @private
-         *
-         */
-        this._executor = (options.executor || function ( elem ) {
-            return elem;
-        });
-
-        /**
-         *
-         * The Collection to load against
-         * @memberof ImageLoader
-         * @member _elements
-         * @private
-         *
-         */
-        this._elements = options.elements;
-
-        /**
-         *
-         * The property to get image source from
-         * @memberof ImageLoader
-         * @member _property
-         * @private
-         *
-         */
-        this._property = (options.property || "data-src");
-
-        /**
-         *
-         * The way to load, async or sync
-         * Using "sync" loading requires calling .start() on the instance
-         * and the "handle" event will not be utilized, rather each image
-         * will be loaded in succession as the previous finishes loading
-         * @memberof ImageLoader
-         * @member _loadType
-         * @private
-         *
-         */
-        this._loadType = (options.loadType || "async");
-
-        /**
-         *
-         * The current amount of elements lazy loaded
-         * @memberof ImageLoader
-         * @member _numLoaded
-         * @private
-         *
-         */
-        this._numLoaded = 0;
-
-        /**
-         *
-         * The total amount of elements to lazy load
-         * @memberof ImageLoader
-         * @member _num2Load
-         * @private
-         *
-         */
-        this._num2Load = (this._elements ? this._elements.length : 0);
-
-        /**
-         *
-         * The delay to execute lazy loading on an element in ms
-         * @memberof ImageLoader
-         * @member _transitionDelay
-         * @default 100
-         * @private
-         *
-         */
-        this._transitionDelay = (options.transitionDelay || 0);
-
-        /**
-         *
-         * The duration on a lazy loaded elements fade in in ms
-         * @memberof ImageLoader
-         * @member _transitionDuration
-         * @default 600
-         * @private
-         *
-         */
-        this._transitionDuration = (options.transitionDuration || 400);
-
-        /**
-         *
-         * This flags that all elements have been loaded
-         * @memberof ImageLoader
-         * @member _resolved
-         * @private
-         *
-         */
-        this._resolved = false;
-
-        // Break out if no elements in collection
-        if ( !this._elements.length ) {
-            return this;
-        }
-
-        // Only run animation frame for async loading
-        if ( this._loadType === "async" ) {
-            this.initAsync();
-
-        } else {
-            this.initSync();
-        }
-    };
-
-
-    /**
-     *
-     * @extends Controller
-     *
-     */
-    ImageLoader.prototype = Object.create( Controller.prototype );
-
-
-    /**
-     *
-     * Support asynchronous loading of a set of images
-     * @memberof ImageLoader
-     * @method initAsync
-     *
-     */
-    ImageLoader.prototype.initAsync = function () {
-        var self = this;
-
-        this.go(function () {
-            if ( self._resolved ) {
-                self.stop();
-
-            } else {
-                self.handle();
-            }
-        });
-    };
-
-    /**
-     *
-     * Support batch synchronous loading of a set of images
-     * @memberof ImageLoader
-     * @method initSync
-     *
-     */
-    ImageLoader.prototype.initSync = function () {
-        var self = this;
-
-        function syncLoad() {
-            var elem = self._elements[ self._numLoaded ];
-
-            self._numLoaded++;
-
-            self.load( elem, function ( error ) {
-                if ( !error && !self._resolved ) {
-                    syncLoad();
-                }
-            });
-        }
-
-        syncLoad();
-    };
-
-    /**
-     *
-     * Perform the image loading and set correct values on element
-     * @method load
-     * @memberof ImageLoader
-     * @param {object} $elem element object
-     * @param {function} callback optional callback for each load
-     * @fires done
-     *
-     */
-    ImageLoader.prototype.load = function ( element, callback ) {
-        var self = this,
-            image = null,
-            timeout = null,
-            isImage = (element.nodeName === "IMG"),
-            source = element.getAttribute( this._property );
-
-        element.setAttribute( "data-imageloader", true );
-
-        if ( isImage ) {
-            image = element;
-
-        } else {
-            image = new Image();
-        }
-
-        timeout = setTimeout(function () {
-            clearTimeout( timeout );
-
-            image.onload = function () {
-                self.fire( "load", element );
-
-                if ( !isImage ) {
-                    element.style.backgroundImage = ("url(" + source + ")");
-
-                    image = null;
-                }
-
-                timeout = setTimeout(function () {
-                    clearTimeout( timeout );
-
-                    if ( (self._numLoaded === self._num2Load) && !self._resolved ) {
-                        self._resolve( true );
-
-                    } else if ( typeof callback === "function" ) {
-                        // Errors first
-                        callback( false );
-                    }
-
-                }, self._transitionDuration );
-            };
-
-            image.onerror = function () {
-                self.fire( "error", element );
-
-                if ( (self._numLoaded === self._num2Load) && !self._resolved ) {
-                    self._resolve( true );
-
-                } else if ( typeof callback === "function" ) {
-                    // Errors first
-                    callback( true );
-                }
-            };
-
-            image.src = source;
-
-        }, this._transitionDelay );
-
-        return this;
-    };
-
-    /**
-     *
-     * Handles element iterations and loading based on callbacks
-     * @memberof ImageLoader
-     * @method handle
-     *
-     */
-    ImageLoader.prototype.handle = function () {
-        var elems = this.getNotLoaded(),
-            self = this;
-
-        for ( var i = 0, len = elems.length; i < len; i++ ) {
-            if ( self._executor( elems[ i ] ) ) {
-                self._numLoaded++;
-
-                self.load( elems[ i ] );
-            }
-        }
-    };
-
-    /**
-     *
-     * Get all images in the set that have yet to be loaded
-     * @memberof ImageLoader
-     * @method getNotLoaded
-     *
-     */
-    ImageLoader.prototype.getNotLoaded = function () {
-        var elems = [];
-
-        for ( var i = 0, len = this._elements.length; i < len; i++ ) {
-            if ( !this._elements[ i ].getAttribute( "data-imageloader" ) ) {
-                elems.push( this._elements[ i ] );
-            }
-        }
-
-        return elems;
-    };
-
-    /**
-     *
-     * Resolve an instance and remove it from the stack
-     * @memberof ImageLoader
-     * @method _resolve
-     *
-     */
-    ImageLoader.prototype._resolve = function () {
-        // Resolved state
-        this._resolved = true;
-
-        // Fires the predefined "done" event
-        this.fire( "done" );
-    };
-
-
-    return ImageLoader;
-
-
-});
-},{"properjs-controller":17}],29:[function(require,module,exports){
-/*!
- *
  * Use native element selector matching
  *
  * @matchElement
@@ -12584,7 +12913,7 @@ module.exports = {
     return matchElement;
 
 });
-},{}],30:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /*!
  *
  * Window resize / orientationchange event controller
@@ -12797,7 +13126,7 @@ module.exports = {
 
 });
 
-},{"properjs-controller":17}],31:[function(require,module,exports){
+},{"properjs-controller":17}],30:[function(require,module,exports){
 /*!
  *
  * Window scroll event controller
@@ -12998,5 +13327,5 @@ module.exports = {
 
 });
 
-},{"properjs-controller":17}]},{},[13])
+},{"properjs-controller":17}]},{},[12])
 //# sourceMappingURL=main.js.map

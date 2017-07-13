@@ -9,7 +9,7 @@
 
   {% for post in posts %}
     {% set vars = {
-      image: post.featuredImage.first(),
+      image: post.featuredImage[0],
       summary: post.postSummary,
       title: post.title,
       url: post.url,
