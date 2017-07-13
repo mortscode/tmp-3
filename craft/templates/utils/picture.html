@@ -38,6 +38,7 @@
                 src="{{ craft.imager.base64Pixel(2,1) }}"
                 data-sizes="auto"
                 data-srcset="{{ craft.imager.srcset(transformedImages) }}"
+                data-src="{{ transformedImages[0].url }}"
                 alt="{{ title ? title : entry.title }}">
             {% endspaceless %}
         {% else %}
