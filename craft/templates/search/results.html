@@ -1,7 +1,14 @@
 {% extends "_layout" %}
 
 {% set query = craft.request.getParam('q') %}
-{% set entries = craft.entries.section('postEntries').search(query).order('score') %}
+
+{% set results = {
+  section: 'postEntries',
+  search: query,
+  order: 'score'
+} %}
+
+{% set entries = craft.entries(results) %}
 
 {% block content %}
   <div class="results">
@@ -13,7 +20,7 @@
         {% for post in entries %}
 
           {% set vars = {
-            image: post.featuredImage,
+            image: post.featuredImage[0],
             summary: post.postSummary,
             title: post.title,
             url: post.url,

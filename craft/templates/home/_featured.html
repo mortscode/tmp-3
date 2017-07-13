@@ -7,8 +7,18 @@
     {% endif %}
   </div>
   {% for post in featuredPosts.featuredPosts %}
-  <a href="{{ post.url }}" class="featured__post">
-    <div class="featured__image js-lazy-img" data-img-src="{{post.featuredImage.first.url}}" title="{{ post.title }}"></div>
-  </a>
+    {% set image = post.featuredImage[0] %}
+    {% set transformedImages = craft.imager.transformImage(image,
+        [
+            { width: 500, ratio: 1 / 1 }
+        ],
+        {
+            format: 'jpg',
+            position: image.focalPoint
+        }
+    ) %}
+    <a href="{{ post.url }}" class="featured__post">
+      <div class="featured__image lazyload" data-bg="{{transformedImages[0]}}" title="{{ post.title }}"></div>
+    </a>
   {% endfor %}
 </section>

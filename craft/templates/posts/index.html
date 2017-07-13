@@ -3,7 +3,7 @@
 {% extends "_layout" %}
 
 {% block content %}
-  {#{% cache for 8 hours unless craft.config.devMode %}#}
+  {% cache for 8 hours unless craft.config.devMode %}
   <article class="post-entry">
     <div class="post-intro">
       <div class="post-intro__title">
@@ -20,7 +20,7 @@
       <div class="post-intro__image">
         {% set vars = {
           'image': entry.featuredImage[0],
-          'lazyImage': false,
+          'lazyImage': true,
           'classes': 'post-intro__image--asset',
           'title': entry.title,
         }%}
@@ -38,14 +38,13 @@
       </div>
     </div>
   </article>
-  {#{% endcache %}#}
+  {% endcache %}
   
   {% include 'posts/_more-posts' %}
 
-  <div class="comments__wrapper">
+  <div class="comments__wrapper disqus">
     <div id="disqus_thread" class="comments"></div>
   </div>
-  {#{% include 'posts/_instructions' %}#}
 
 {% endblock %}
 

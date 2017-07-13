@@ -9,7 +9,7 @@
   <div class="more-posts__wrapper">
     {% for post in similar %}
       {% set vars = {
-        image: post.featuredImage,
+        image: post.featuredImage[0],
         summary: post.postSummary,
         title: post.title,
         url: post.url,

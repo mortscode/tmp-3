@@ -14,7 +14,7 @@ craft/storage/
 public/assets/uploads/*
 public/assets/img/
 public/icons/
-public/imager/
+public/assets/imager/
 node_modules/
 data/
 
@@ -38,6 +38,9 @@ nbproject
 _notes
 dwsync.xml
 logs/*
+xdebug.ini
+launch.json
+info.php
 
 node_modules
 

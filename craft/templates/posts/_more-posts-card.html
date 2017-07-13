@@ -1,5 +1,21 @@
+{% set transformedImages = craft.imager.transformImage(image,
+    [
+        { width: 1000 },
+        { width: 667 },
+        { width: 400 },
+    ],
+    {
+        allowUpscale: false,
+        format: 'jpg',
+        jpegQuality: 90,
+        mode: 'crop',
+        position: 'center-center',
+        ratio: 2 / 3,
+        interlace: true,
+    }
+) %}
 <div class="more-posts-card js-scrolls animate -fade-up" data-offset="0.85">
-  <a href="{{url}}" class="more-posts-card__image js-lazy-img" data-img-src="{{image.first.url}}" title="{{title}}">
+  <a href="{{url}}" class="more-posts-card__image lazyload" data-bg="{{ transformedImages[1].url }}" title="{{title}}">
     <div class="more-posts-card__image--border"></div>
     <span class="more-posts-card__image--cta">Read post</span>
   </a>

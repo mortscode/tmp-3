@@ -391,7 +391,7 @@ body {
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  transition: background-color 200ms ease-in-out, padding 200ms ease-in-out, width 200ms ease-in-out; }
+  transition: background-color 150ms ease-in-out, padding 150ms ease-in-out, width 150ms ease-in-out; }
   @media (max-width: 1200px) {
     .btn {
       padding: 1.125rem 3.125rem; } }
@@ -976,7 +976,7 @@ picture {
       font-weight: 300;
       font-style: italic;
       margin: 0 0 8px;
-      transition: color 200ms ease-in-out; }
+      transition: color 150ms ease-in-out; }
       .categories__list--item:hover,
       .categories__list a:hover {
         color: #bfaf7c; }
@@ -1116,7 +1116,6 @@ picture {
   .featured__post {
     -ms-flex: 0 0 calc(25% - 20px);
     flex: 0 0 calc(25% - 20px);
-    outline: 0 solid #bfaf7c;
     position: relative; }
     @media only screen and (max-width: 840px) {
       .featured__post {
@@ -1132,7 +1131,8 @@ picture {
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: outline 200ms ease-in-out; }
+    outline: 0px solid #bfaf7c;
+    transition: outline 150ms ease-in-out; }
     @media only screen and (max-width: 840px) {
       .featured__image {
         position: absolute;
@@ -1183,7 +1183,7 @@ picture {
     outline: 0;
     -webkit-appearance: none;
     margin-bottom: 0;
-    transition: background 200ms ease-in-out; }
+    transition: background 150ms ease-in-out; }
     .posts-filter .filter__wrapper {
       width: 15.25424%;
       float: left;
@@ -1216,7 +1216,7 @@ picture {
       background-repeat: no-repeat;
       background-size: 40% auto;
       background-position: 50% 50%;
-      transition: background-color 200ms ease-in-out; }
+      transition: background-color 150ms ease-in-out; }
       @media only screen and (max-width: 500px) {
         .posts-filter .filter__arrow {
           left: 91.52542%; } }
@@ -1306,7 +1306,7 @@ picture {
     width: 1.6875rem;
     height: auto;
     fill: #969997;
-    transition: fill 200ms ease-in-out; }
+    transition: fill 150ms ease-in-out; }
     @media only screen and (max-width: 500px) {
       .header__hamburger--icon {
         width: 1.5rem;
@@ -1347,7 +1347,7 @@ picture {
     width: 1.6875rem;
     height: auto;
     fill: #969997;
-    transition: fill 200ms ease-in-out; }
+    transition: fill 150ms ease-in-out; }
     @media only screen and (max-width: 500px) {
       .header__search--icon {
         width: 1.5rem;
@@ -1390,7 +1390,7 @@ picture {
     pointer-events: none;
     opacity: 0;
     transform: translateX(-50%);
-    transition: opacity 200ms ease-in-out; }
+    transition: opacity 150ms ease-in-out; }
     @media only screen and (max-width: 1200px) {
       .sticky-header .tmp-logo-wrapper {
         z-index: 8765320;
@@ -1421,7 +1421,7 @@ picture {
         display: none; } }
     .sticky-header .navigation .nav-list .search-wrapper {
       opacity: 0.7;
-      transition: opacity 200ms ease-in-out;
+      transition: opacity 150ms ease-in-out;
       cursor: pointer;
       display: inline-block;
       background-image: url("/assets/img/icons/search-icon.svg");
@@ -1450,7 +1450,7 @@ picture {
       color: rgba(44, 51, 44, 0.7);
       font-size: 1rem;
       margin: 0;
-      transition: color 200ms ease-in-out; }
+      transition: color 150ms ease-in-out; }
       .sticky-header .navigation .nav-list a:hover {
         color: #bfaf7c; }
   .sticky-header .social-links {
@@ -1462,7 +1462,7 @@ picture {
       .sticky-header .social-links {
         display: none; } }
     .sticky-header .social-links .social-list .social-item {
-      transition: background-color 200ms ease-in-out;
+      transition: background-color 150ms ease-in-out;
       background-color: rgba(150, 153, 151, 0.5);
       border-radius: 100%;
       display: inline-block;
@@ -1507,8 +1507,8 @@ picture {
   margin-bottom: 5rem;
   -ms-flex-order: -1;
   order: -1;
-  transition: flex 200ms ease-in-out;
-  transition: flex 200ms ease-in-out, -ms-flex 200ms ease-in-out; }
+  transition: flex 150ms ease-in-out;
+  transition: flex 150ms ease-in-out, -ms-flex 150ms ease-in-out; }
   @media only screen and (max-width: 840px) {
     .home-feature {
       margin-bottom: 3.75rem; } }
@@ -1519,8 +1519,8 @@ picture {
     flex: 0 0 50%;
     max-height: 97vh;
     min-height: 46.875rem;
-    transition: flex 200ms ease-in-out;
-    transition: flex 200ms ease-in-out, -ms-flex 200ms ease-in-out; }
+    transition: flex 150ms ease-in-out;
+    transition: flex 150ms ease-in-out, -ms-flex 150ms ease-in-out; }
     @media only screen and (max-width: 1200px) {
       .home-feature__image {
         -ms-flex: 0 0 calc(50% - 15px);
@@ -1546,8 +1546,8 @@ picture {
     -ms-flex-line-pack: center;
     align-content: center;
     padding-left: 3.75rem;
-    transition: padding 200ms ease-in-out, flex 200ms ease-in-out;
-    transition: padding 200ms ease-in-out, flex 200ms ease-in-out, -ms-flex 200ms ease-in-out; }
+    transition: padding 150ms ease-in-out, flex 150ms ease-in-out;
+    transition: padding 150ms ease-in-out, flex 150ms ease-in-out, -ms-flex 150ms ease-in-out; }
     @media only screen and (max-width: 1200px) {
       .home-feature__text {
         -ms-flex: 1 0 50%;
@@ -1574,7 +1574,7 @@ picture {
     .home-feature__text--title {
       color: #2c332c;
       margin-bottom: 1.5rem;
-      transition: color 200ms ease-in-out; }
+      transition: color 150ms ease-in-out; }
       .home-feature__text--title:hover, .home-feature__text--title:focus {
         color: #bfaf7c; }
     .home-feature__text--cta {
@@ -1802,7 +1802,7 @@ picture {
       max-width: 400px;
       margin: 0 auto;
       padding: 5em 3em;
-      transition: transform 400ms ease-in-out, opacity 200ms ease-in-out; }
+      transition: transform 400ms ease-in-out, opacity 150ms ease-in-out; }
       @media (max-height: 500px) {
         .mobile-nav .m-nav-menu .m-nav-content {
           padding: 2.5em 3em; } }
@@ -1826,7 +1826,7 @@ picture {
       margin-top: 1.5em;
       text-align: center; }
       .mobile-nav .m-nav-menu .social-links .social-item {
-        transition: background-color 200ms ease-in-out;
+        transition: background-color 150ms ease-in-out;
         background-color: rgba(150, 153, 151, 0.5);
         border-radius: 100%;
         display: inline-block;
@@ -1966,7 +1966,7 @@ picture {
         width: 60%;
         height: 3px;
         background-color: #969997;
-        transition: background-color 200ms ease-in-out; }
+        transition: background-color 150ms ease-in-out; }
       .modal__close--line:before {
         transform: rotate(45deg); }
       .modal__close--line:after {
@@ -2078,7 +2078,7 @@ picture {
       right: 0;
       bottom: 0;
       border: 0 solid #fff;
-      transition: border 200ms ease-in-out; }
+      transition: border 150ms ease-in-out; }
     .more-posts-card__image--cta {
       color: #bfaf7c;
       font-family: "Montserrat", sans-serif;
@@ -2091,7 +2091,7 @@ picture {
       padding: 0.5rem 0;
       text-align: center;
       transform: translateY(100%);
-      transition: transform 200ms ease-in-out; }
+      transition: transform 150ms ease-in-out; }
       @media only screen and (max-width: 840px) {
         .more-posts-card__image--cta {
           font-size: 0.875rem; } }
@@ -2202,7 +2202,7 @@ picture {
         flex: 0 0 50px; } }
     .navigation__social li {
       margin: 0 0.75rem;
-      transition: margin 200ms ease-in-out; }
+      transition: margin 150ms ease-in-out; }
       @media only screen and (max-width: 1200px) {
         .navigation__social li {
           margin: 0 0.375rem; } }
@@ -2216,7 +2216,7 @@ picture {
       width: 2.5rem;
       height: 2.5rem;
       position: relative;
-      transition: background-color 200ms ease-in-out, height 200ms ease-in-out, width 200ms ease-in-out; }
+      transition: background-color 150ms ease-in-out, height 150ms ease-in-out, width 150ms ease-in-out; }
       @media only screen and (max-width: 1200px) {
         .navigation__social--item {
           height: 2.25rem;
@@ -2236,7 +2236,7 @@ picture {
       left: 50%;
       transform: translate(-50%, -50%);
       fill: #f2f2f2;
-      transition: fill 200ms ease-in-out; }
+      transition: fill 150ms ease-in-out; }
       .navigation__social--icon.-tall {
         height: 60%;
         width: auto; }
@@ -2327,7 +2327,7 @@ picture {
     width: 1.5rem;
     height: 1.5rem;
     fill: #969997;
-    transition: fill 200ms ease-in-out; }
+    transition: fill 150ms ease-in-out; }
 
 .newsletter {
   background-color: #fff;
@@ -2357,7 +2357,7 @@ picture {
       padding: 0.75rem 0 0.375rem;
       text-align: center;
       width: 100%;
-      transition: border 200ms ease-in-out; }
+      transition: border 150ms ease-in-out; }
       .newsletter__form--field:focus {
         border-bottom: 2px solid #969997; }
     .newsletter__form--submit {
@@ -2451,7 +2451,7 @@ picture {
       width: 2.1875rem;
       margin: 0 0.1875rem;
       display: inline-block;
-      transition: fill 200ms ease-in-out; }
+      transition: fill 150ms ease-in-out; }
       .paginate__button--icon.-left {
         transform-origin: 50% 50%;
         transform: rotate(180deg); }
@@ -2516,7 +2516,7 @@ picture {
       right: 0;
       bottom: 0;
       border: 0 solid #fff;
-      transition: border 200ms ease-in-out; }
+      transition: border 150ms ease-in-out; }
     .post-card__image--cta {
       color: #bfaf7c;
       font-family: "Montserrat", sans-serif;
@@ -2529,7 +2529,7 @@ picture {
       padding: 0.75rem 0;
       text-align: center;
       transform: translateY(100%);
-      transition: transform 200ms ease-in-out; }
+      transition: transform 150ms ease-in-out; }
       @media only screen and (max-width: 1200px) {
         .post-card__image--cta {
           font-size: 1rem;
@@ -2552,7 +2552,7 @@ picture {
   .post-card__title {
     color: #2c332c;
     margin-bottom: 0.75rem;
-    transition: color 200ms ease-in-out; }
+    transition: color 150ms ease-in-out; }
     .post-card__title:hover {
       color: #bfaf7c; }
 
@@ -2566,8 +2566,8 @@ picture {
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
   padding: 0 3.75rem 3.75rem 0;
-  transition: flex 200ms ease-in-out;
-  transition: flex 200ms ease-in-out, -ms-flex 200ms ease-in-out; }
+  transition: flex 150ms ease-in-out;
+  transition: flex 150ms ease-in-out, -ms-flex 150ms ease-in-out; }
   @media only screen and (max-width: 840px) {
     .post-intro__title {
       -ms-flex: 0 1 100%;
@@ -2600,8 +2600,8 @@ picture {
   flex: 0 1 50%;
   position: relative;
   text-align: center;
-  transition: flex 200ms ease-in-out;
-  transition: flex 200ms ease-in-out, -ms-flex 200ms ease-in-out; }
+  transition: flex 150ms ease-in-out;
+  transition: flex 150ms ease-in-out, -ms-flex 150ms ease-in-out; }
   @media only screen and (max-width: 840px) {
     .post-intro__image {
       -ms-flex: 0 1 100%;
@@ -3177,7 +3177,7 @@ picture {
       right: 0;
       bottom: 0;
       border: 0 solid #fff;
-      transition: border 200ms ease-in-out; }
+      transition: border 150ms ease-in-out; }
     .result-card__image--cta {
       color: #bfaf7c;
       font-family: "Montserrat", sans-serif;
@@ -3190,7 +3190,7 @@ picture {
       padding: 0.5rem 0;
       text-align: center;
       transform: translateY(100%);
-      transition: transform 200ms ease-in-out; }
+      transition: transform 150ms ease-in-out; }
       @media only screen and (max-width: 840px) {
         .result-card__image--cta {
           font-size: 0.875rem; } }
@@ -3315,7 +3315,7 @@ picture {
   background-position: 50% 50%;
   background-color: rgba(255, 255, 255, 0);
   opacity: 0.8;
-  transition: opacity 200ms ease-in-out; }
+  transition: opacity 150ms ease-in-out; }
   @media only screen and (max-width: 500px) {
     .m-search-btn {
       left: 0;
@@ -3433,7 +3433,7 @@ picture {
       width: 1.5rem;
       height: 1.5rem;
       fill: #969997;
-      transition: fill 200ms ease-in-out; }
+      transition: fill 150ms ease-in-out; }
 
 .share {
   display: -ms-flexbox;
@@ -3471,7 +3471,7 @@ picture {
     border-radius: 50%;
     margin: 0 15px;
     position: relative;
-    transition: background-color 200ms ease-in-out; }
+    transition: background-color 150ms ease-in-out; }
     @media only screen and (max-width: 1200px) {
       .share__icon {
         -ms-flex: 0 0 18%;
@@ -3737,7 +3737,7 @@ body {
       flex: 0 0 33.333%; } }
   .archive__list-item--link {
     color: #2c332c;
-    transition: color 200ms ease-in-out; }
+    transition: color 150ms ease-in-out; }
     .archive__list-item--link:hover, .archive__list-item--link:focus {
       color: #bfaf7c; }
   .archive__list-item--image {
@@ -3912,7 +3912,7 @@ body {
       padding: 0 6.77966%;
       transform: translateY(-50%);
       color: #969997;
-      transition: color 200ms ease-in-out; }
+      transition: color 150ms ease-in-out; }
       @media (max-width: 700px) {
         .posts__result--title {
           padding: 6.77966%;
@@ -3943,7 +3943,7 @@ body {
       text-align: left;
       color: #969997;
       border-top: 1px solid rgba(150, 153, 151, 0.5);
-      transition: color 200ms ease-in-out; }
+      transition: color 150ms ease-in-out; }
       @media (max-width: 700px) {
         .posts__result--date {
           clear: both;

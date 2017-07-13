@@ -1,6 +1,15 @@
 {% extends "_layout" %}
 
-{% set archive = craft.entries.section('postEntries').limit(null) %}
+{% set archive = craft.entries({
+    section: 'postEntries',
+    with: [
+      ['featuredImage', {
+        withTransforms: ['archive']
+      }],
+    ],
+    limit: null
+}) %}
+
 {% set snark = [
   'recipes and counting.',
   'delicious recipes so far.',
@@ -9,39 +18,22 @@
 ] %}
 
 {% block content %}
+{% cache for 8 hours %}
   <div class="archive">
     <h1 class="archive__title">Post archive: <span class="message">{{ archive|length }} {{ random(snark) }}</span></h1>
     <ul class="archive__list">
-      {% cache for 4 hours %}
       {% for entry in archive %}
       <li class="archive__list-item">
         <a href="{{entry.url}}" class="archive__list-item--link">
           {% if entry.featuredImage | length %}
-            {% set photo = entry.featuredImage[0] %}
-            {% if photo.height > photo.width %}
-              {% set vars = {
-                'image': photo,
-                'lazyImage': true,
-                'classes': 'archive__list-item--picture',
-                'title': entry.title,
-              }%}
-            {% else %}
-              {% set vars = {
-                'image': photo,
-                'lazyImage': true,
-                'forceVert': true,
-                'classes': 'archive__list-item--picture',
-                'title': entry.title,
-              }%}
-            {% endif %}
-            {% include 'utils/picture' with vars %}
+            <img data-src="{{entry.featuredImage[0].url('archive')}}" class="archive__list-item--picture lazyload" alt="{{entry.title}}">
           {% endif %}
           <div class="archive__list-item--date">{{entry.postDate.format('F d, Y')}}</div>
           <h2 class="archive__list-item--title">{{ entry.title }}</h2>
         </a>
       </li>
       {% endfor %}
-      {% endcache %}
     </ul>
   </div>
+{% endcache %}
 {% endblock %}

@@ -17,7 +17,7 @@
         {% for post in entries %}
 
           {% set vars = {
-            image: post.featuredImage,
+            image: post.featuredImage[0],
             summary: post.postSummary,
             title: post.title,
             url: post.url,
