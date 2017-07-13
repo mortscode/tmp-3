@@ -1,0 +1,10 @@
+<section class="insta">
+  <div class="insta__inner-wrapper">
+    <h1 class="insta__headline"><a href="https://instagram.com/themodernproper" class="">@themodernproper</a> on Instagram</h1>
+    <div class="insta__grams">
+    {% for image in craft.instagramfeed.getFeed(4) %}
+      <a href="{{ image.link }}" class="insta__grams--photo lazyload" data-bg="{{ image.url }}" target="_blank"></a>
+    {% endfor %}
+    </div>
+  </div>
+</section>

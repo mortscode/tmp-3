@@ -25,3 +25,19 @@
 @mixin bp($breaker, $feature: max-width) {
   @media only screen and (#{$feature}: $breaker) { @content; }
 }
+
+@mixin content-wrapper($bg: $tmp-light) {
+  position: relative;
+  padding: 0 rem(120);
+  overflow: hidden;
+  background-color: #{$bg};
+  z-index: 1;
+
+  @include bp($lg) {
+    padding: 0 rem(80);
+  }
+
+  @include bp($sm) {
+    padding: 0;
+  }
+}

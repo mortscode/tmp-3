@@ -10,17 +10,12 @@
     limit: null
 }) %}
 
-{% set snark = [
-  'recipes and counting.',
-  'delicious recipes so far.',
-  'game changers.',
-  'delightful dishes.',
-] %}
+{% set snark = entry.archiveDescriptions %}
 
 {% block content %}
-{% cache for 8 hours %}
   <div class="archive">
-    <h1 class="archive__title">Post archive: <span class="message">{{ archive|length }} {{ random(snark) }}</span></h1>
+    <h1 class="archive__title">Post archive: <span class="message">{{ archive|length }} {{ random(snark).description }}</span></h1>
+    {% cache for 8 hours %}
     <ul class="archive__list">
       {% for entry in archive %}
       <li class="archive__list-item">
@@ -34,6 +29,6 @@
       </li>
       {% endfor %}
     </ul>
+    {% endcache %}
   </div>
-{% endcache %}
 {% endblock %}

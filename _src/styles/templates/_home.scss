@@ -1,5 +1,5 @@
 .home-posts {
-  @extend %content-wrapper;
+  @include content-wrapper();
   margin-bottom: rem(170);
   box-shadow: 0 rem(3) rem(5) rgba($tmp-dark, 0.3);
 

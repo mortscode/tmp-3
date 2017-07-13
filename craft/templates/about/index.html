@@ -1,15 +1,10 @@
 {% extends "_layout" %}
 
 {% block content %}
-<div class="grid">
-
-  <div class="about">
-    <div class="about__image" style="background-image:url('{{ entry.featuredImage.first.url }}');"></div>
-
-    <div class="about__body">
-      {{ entry.body }}
-    </div>
-
-  </div>
+<div class="about">
+  {% include 'about/_intro' %}
+  {% include 'about/_staff' %}
 </div>
+{% include 'about/_instagram' %}
+{% include 'shared/_partnership-contact' %}
 {% endblock %}

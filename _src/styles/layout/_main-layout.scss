@@ -10,7 +10,7 @@ body {
   position: relative;
   padding: 0 rem(120);
   overflow: hidden;
-  background: $tmp-light;
+  background-color: $tmp-light;
   z-index: 1;
 
   @include bp($lg) {

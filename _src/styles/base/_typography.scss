@@ -286,14 +286,13 @@ hr {
   margin: $large-spacing 0 0;
 }
 
-img,
-picture {
-  margin: 0;
-  max-width: 100%;
-}
+// img,
+// picture {
+//   margin: 0;
+//   max-width: 100%;
+// }
 
-.builder,
-.about {
+.builder {
   h1 {
     font-size: rem(36);
     line-height: rem(48);
