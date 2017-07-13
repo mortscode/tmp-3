@@ -1,0 +1,19 @@
+<section class="staff">
+    <h1 class="staff__headline">{{ entry.staffHeadline }}</h1>
+    <ul class="staff__bios">
+      {% for bio in entry.staffBios %}
+        {% set image = bio.photo[0] %}
+        {% set transformedImage = craft.imager.transformImage(image, { 
+          width: 500,
+          ratio: 1 / 1,
+          format: 'jpg',
+          position: image.focalPoint
+        }) %}
+        <li class="staff__bios--bio-wrapper">
+          <div class="staff__bios--bio-photo lazyload" data-bg="{{ transformedImage.url }}"></div>
+          <h2 class="staff__bios--bio-name">{{ bio.fullName }}</h2>
+          <p class="staff__bios--bio-text">{{ bio.bio }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>

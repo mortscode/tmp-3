@@ -1,0 +1,16 @@
+<section class="about__intro">
+  {% for intro in entry.aboutIntro %}
+    <h1 class="about__intro--headline">{{ intro.headline }}</h1>
+    <h2 class="about__intro--subhead">{{ intro.subhead }}</h2>
+    <img src="{{ craft.imager.base64Pixel(2,1) }}" alt="The Ladies of The Modern Proper" class="about__intro--image lazyload" data-src="{{ intro.image[0].url }}">
+  {% endfor %}
+  <div class="about__intro-quote">
+    {% for quote in entry.aboutQuote %}
+      <div class="about__intro-quote--quote">{{ quote.quote }}</div>
+      <span class="about__intro-quote--author">{{ quote.author }}</span>
+    {% endfor %}
+  </div>
+  <div class="about__intro-body">
+    {{ entry.aboutBody }}
+  </div>
+</section>

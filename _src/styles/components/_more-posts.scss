@@ -1,5 +1,5 @@
 .more-posts {
-  @extend %content-wrapper;
+  @include content-wrapper();
 
   &__title {
     @extend %title-serif-md;

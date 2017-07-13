@@ -1,0 +1,52 @@
+.staff {
+  @extend %content-inner-wrapper;
+  display: flex;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+  padding: rem(40) 0 rem(80);
+
+  &__headline {
+    @extend %title-lg;
+    text-align: center;
+    flex: 0 0 100%;
+    margin-bottom: rem(40);
+  }
+
+  &__bios {
+    display: flex;
+    flex: 0 0 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &--bio-wrapper {
+      flex: 0 0 calc(25% - 30px);
+      margin-right: rem(30);
+      position: relative;
+
+      &::last-child {
+        margin-right: 0;
+      }
+    }
+
+    &--bio-photo {
+      background: 50% 50% no-repeat;
+      background-size: cover;
+      width: 100%;
+
+      &::after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+      }
+    }
+
+    &--bio-name {
+      @extend %title-sm;
+      margin: rem(12) 0;
+    }
+
+    &--bio-text {
+      @extend %text-sm;
+    }
+  }
+}
