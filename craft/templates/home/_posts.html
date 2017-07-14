@@ -1,5 +1,5 @@
 <div class="post-wrapper">
-  {% cache for 4 hours unless craft.config.devMode %}
+  {% cache for 4 hours if not craft.config.devMode %}
 
   {% if not paginate.prevUrl %}
   {% set homePage = true %}
