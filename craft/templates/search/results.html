@@ -29,7 +29,7 @@
           {% include 'partials/search/_result-card' with vars %}
         {% endfor %}
       {% else %}
-      <p>Sorry. Your search for “{{ query }}” didn’t return any results.</p>
+      <p class="results__error">Sorry. Your search for “{{ query }}” didn’t return any results.</p>
       {% endif %}
     </div>
   </div>

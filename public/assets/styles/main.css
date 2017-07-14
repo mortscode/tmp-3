@@ -611,12 +611,12 @@ p.caption {
   font-family: "Montserrat", sans-serif;
   font-weight: 300; }
 
-p, .contact__blurb, .featured__text--subtitle, .home-feature__text--summary, .partner-contact__body p, .about__intro-body, .error__body {
+p, .contact__blurb, .featured__text--subtitle, .home-feature__text--summary, .partner-contact__body p, .about__intro-body, .error__body, .results__error {
   font-size: 1.125rem;
   line-height: 1.6;
   margin: 0 0 0.75em; }
   @media only screen and (max-width: 1200px) {
-    p, .contact__blurb, .featured__text--subtitle, .home-feature__text--summary, .partner-contact__body p, .about__intro-body, .error__body {
+    p, .contact__blurb, .featured__text--subtitle, .home-feature__text--summary, .partner-contact__body p, .about__intro-body, .error__body, .results__error {
       font-size: 1rem; } }
 
 .post-card__summary, .staff__bios--bio-text, .about__intro-quote {
@@ -4164,5 +4164,8 @@ body {
   .results__title {
     color: #969997;
     margin-bottom: 2.5rem; }
+  .results__error {
+    max-width: 30rem;
+    margin: 0 auto; }
 
 /*# sourceMappingURL=main.css.map */
