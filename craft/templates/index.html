@@ -6,6 +6,35 @@
 {% set layout = "_layout" %}
 {% extends layout %}
 
+{% set seoEntries = craft.entries.section('postEntries') %}
+{% set currentFirstImage = seoEntries[0].featuredImage[0] %}
+
+{% set seomaticMeta = { 
+    seoTitle: seomaticMeta.seoTitle,
+    seoDescription: seomaticMeta.seoDescription,
+    seoKeywords: seomaticMeta.seoKeywords,
+    seoImage: currentFirstImage.url('standardTall'),
+    canonicalUrl: seomaticMeta.canonicalUrl,
+    twitter: { 
+        card: seomaticMeta.twitter.card,
+        site: seomaticMeta.twitter.site,
+        creator: seomaticMeta.twitter.creator,
+        title: seomaticMeta.twitter.title,
+        description: seomaticMeta.twitter.description,
+        image: currentFirstImage.url('twitterSeo')
+    },
+    og: { 
+        type: seomaticMeta.og.type,
+        locale: seomaticMeta.og.locale,
+        url: seomaticMeta.og.url,
+        title: seomaticMeta.og.title,
+        description: seomaticMeta.og.description,
+        image: currentFirstImage.url('facebookSeo'),
+        site_name: seomaticMeta.og.site_name,
+        see_also: seomaticMeta.og.see_also
+    }
+} %}
+
 {% block content %}
   {% include 'home' %}
 {% endblock %}
