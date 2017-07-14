@@ -1,42 +1,97 @@
 .contact {
-  @include span(4);
-  @include push(3 of 24);
-  padding: $large-spacing 0;
+  @include content-wrapper();
 
-  @include bp($lg) {
-    @include span(6);
-    @include push(1);
+  &__inner-wrapper {
+    @include content-inner(500, center);
+    padding: rem(30) 0;
   }
 
-  @include bp($md) {
-    @include span(7 wider);
-    @include push(1);
+  &__headline {
+    @extend %title-lg;
+    margin-bottom: rem(24);
   }
 
-  @include bp($sm) {
-    @include span(10);
+  &__blurb {
+    @extend %text-lg;
     text-align: center;
   }
 
+  &__form {
+    flex: 0 0 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__input-wrapper {
+    position: relative;
+    flex: 0 0 100%;
+    margin-bottom: rem(30);
+
+    &.active {
+      .contact__input-label {
+        color: $tmp-dark;
+        top: 0;
+        transform: translateY(-24px);
+      }
+
+      .contact__input::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__input-label {
+    @extend %text-xs;
+    color: $tmp-gray;
+    font-family: $sans;
+    position: absolute;
+    left: rem(12);
+    text-transform: uppercase;
+    transition: top $ease-fast, transform $ease-fast, color $ease-fast;
+
+    &.-text {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.-message {
+      top: rem(12);
+    }
+  }
+
   input[type="text"],
+  input[type="email"],
   textarea {
-    background-color: darken($tmp-light, 5%);
-    width: 100%;
-    margin-bottom: $small-spacing;
+    background-color: $white;
+    margin: 0;
     padding: $small-spacing;
     transition: background-color $ease-med;
     color: darken($tmp-gray, 10%);
+    border: none;
     border-bottom: 2px solid darken($tmp-light, 5%);
+    width: 100%;
+    position: relative;
 
     @include bp($sm) {
       font-size: rem(18);
       line-height: rem(24);
     }
 
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 5px;
+      background-color: $tmp-brand;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      transition: width $ease-fast;
+    }
+
     &:focus {
-      background-color: $white;
-      color: darken($tmp-gray, 10%);
-      border-bottom: 2px solid rgba($tmp-gray, 0.5);
+      color: $tmp-dark;
+      outline: none;
     }
   }
 

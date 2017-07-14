@@ -41,3 +41,12 @@
     padding: 0;
   }
 }
+
+@mixin content-inner($width: 1280px, $justify: space-between) {
+  max-width: #{$width}px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: #{$justify};
+}
