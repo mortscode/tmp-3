@@ -1,11 +1,11 @@
 .post-intro {
-  @extend %entry-inner-wrapper;
+  @include content-inner();
 
   &__title {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 0 0 50%;
+    flex: 0 1 50%;
     padding: 0 rem(60) rem(60) 0;
     transition: flex $ease-fast;
 
@@ -48,7 +48,6 @@
   }
 
   &__image {
-    background-size: cover;
     flex: 0 1 50%;
     position: relative;
     text-align: center;
@@ -59,15 +58,11 @@
       text-align: center;
     }
 
-    &--asset {
-      max-height: 98vh;
-      min-height: rem(750);
-      width: auto;
-      vertical-align: top;
 
-      @include bp($lg) {
-        min-height: 0;
-      }
+    &--asset {
+      width: 100%;
+      height: auto;
+      vertical-align: top;
     }
   }
 }
@@ -75,18 +70,18 @@
 .post {
   @include span(10 wide);
   z-index: $z-post-content;
-  padding: $large-spacing $base-spacing;
+  padding: 0 $base-spacing $large-spacing;
   margin-top: $large-spacing;
   position: relative;
 
   @include bp($lg) {
     @include full;
-    padding: $large-spacing 0;
+    padding: 0 0 $large-spacing;
   }
 
-  @include bp($sm) {
+  @include bp($md) {
     margin-top: $base-spacing;
-    padding: $base-spacing 0;
+    padding: 0 0 $base-spacing;
   }
 
   &__title {

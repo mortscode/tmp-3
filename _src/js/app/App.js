@@ -1,24 +1,25 @@
 import $ from 'properjs-hobo';
+import ContactForm from './components/ContactForm';
 import lazySizes from 'lazysizes';
 import avoidOrphan from './utils/avoid-orphan';
-// import loadImages from './utils/load-images';
 import emitter from './utils/emitter';
+import MobileNav from './components/MobileNav';
+import { modules } from './utils/module-loader';
+import Navigation from './components/Navigation';
+import resizer from './utils/resizer';
+import ScrollElems from './components/ScrollElems';
 import scroller from './utils/scroller';
 import ScrollTo from './utils/scroll-to';
-import resizer from './utils/resizer';
-import SearchButton from './components/SearchButton';
-import MobileNav from './components/MobileNav';
-import Navigation from './components/Navigation';
 import Search from './components/Search';
-import ScrollElems from './components/ScrollElems';
+import SearchButton from './components/SearchButton';
 
 export default class App {
   constructor() {
-    // this.$lazyImgs = $('.js-lazy-img');
     this.$scrolls = $('.js-scrolls');
     this.$scrollTos = $('.js-scroll-to');
     this.$orphans = $('.js-avoid-orphan');
     this.orphanArray = [];
+    this.moduleInstances = this.getInstances();
     this.initialize();
   }
 
@@ -27,7 +28,6 @@ export default class App {
     this.mobileNav = new MobileNav('.js-nav-button');
     this.navigation = new Navigation('.js-navigation');
     this.search = new Search('.js-search');
-    // loadImages(this.$lazyImgs);
     this._lazyConfig();
     lazySizes.init();
     this._bindEvents();
@@ -60,19 +60,19 @@ export default class App {
     });
   }
 
-  _mapScrolls() {
-    this.$scrolls.each((elem, i) => {
-      const $elem = $(this.$scrolls[i]);
-      $elem.data('scrolls', new ScrollElems($elem));
-    });
-  }
-
   _mapOrphans() {
     this.$orphans.each((elem) => {
       this.orphanArray.push(elem);
     });
     this.orphanArray.map((orphan) => {
       avoidOrphan(orphan);
+    });
+  }
+
+  _mapScrolls() {
+    this.$scrolls.each((elem, i) => {
+      const $elem = $(this.$scrolls[i]);
+      $elem.data('scrolls', new ScrollElems($elem));
     });
   }
 
@@ -87,6 +87,30 @@ export default class App {
     $('.js-print-recipe').on('click', (e) => {
       e.preventDefault();
       window.print();
+    });
+  }
+
+  getInstances() {
+    return modules.map((module) => {
+      const elements = Array.from(document.querySelectorAll(module.class));
+      const references = elements.map((el) => {
+        return new module.Source(el);
+      });
+
+      return {
+        name: module.name,
+        ref: references,
+      };
+    });
+  }
+
+  tearDown() {
+    this.moduleInstances.forEach((item) => {
+      item.ref.forEach((ref) => {
+        if (ref.teardown) {
+          ref.teardown();
+        }
+      });
     });
   }
 }

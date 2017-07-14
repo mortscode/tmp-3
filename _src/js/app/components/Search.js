@@ -8,7 +8,7 @@ export default class Search {
     this.$searchClose = $('.js-search-close');
     this.$searchInput = document.querySelector('.js-search-input');
     this.searchOpen = false;
-    this.navOpen = false;
+    this.disableSearch = false;
     this.$body = $(document.body);
 
     this.initialize();
@@ -18,11 +18,19 @@ export default class Search {
     this._bindEvents();
 
     emitter.on('app--nav-open', () => {
-      this.navOpen = true;
+      this.disableSearch = true;
     });
 
     emitter.on('app--nav-closed', () => {
-      this.navOpen = false;
+      this.disableSearch = false;
+    });
+
+    emitter.on('app--search-lock', () => {
+      this.disableSearch = true;
+    });
+
+    emitter.on('app--search-unlock', () => {
+      this.disableSearch = false;
     });
   }
 
@@ -47,7 +55,7 @@ export default class Search {
   }
 
   _inputHandler(event) {
-    if (this.navOpen) {
+    if (this.disableSearch || event.keyCode === 91) {
       return;
     }
 
@@ -64,9 +72,9 @@ export default class Search {
   }
 
   _openSearch() {
+    this.$searchInput.focus();
     this.$search.addClass('-active');
     this.$body.addClass('no-scroll');
-    this.$searchInput.focus();
     this._attachEvents();
     this.searchOpen = true;
   }
