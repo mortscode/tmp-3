@@ -3,7 +3,7 @@
 {% extends "_layout" %}
 
 {% block content %}
-  {% cache for 8 hours unless craft.config.devMode %}
+  {% cache for 8 hours if not craft.config.devMode %}
   <article class="post-entry">
     <div class="post-intro">
       <div class="post-intro__title">

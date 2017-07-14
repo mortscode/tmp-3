@@ -15,7 +15,7 @@
 {% block content %}
   <div class="archive">
     <h1 class="archive__title">Post archive: <span class="message">{{ archive|length }} {{ random(snark).description }}</span></h1>
-    {% cache for 8 hours %}
+    {% cache for 8 hours if not craft.config.devMode %}
     <ul class="archive__list">
       {% for entry in archive %}
       <li class="archive__list-item">

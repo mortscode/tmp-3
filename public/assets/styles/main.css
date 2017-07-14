@@ -511,17 +511,17 @@ h6 {
       font-size: 1.875rem;
       line-height: 2.5rem; } }
 
-.contact__headline, .home-feature__text--title, .insta__headline, .partner-contact__headline, .staff__headline, .about__intro--headline {
+.contact__headline, .home-feature__text--title, .insta__headline, .partner-contact__headline, .staff__headline, .about__intro--headline, .error__headline {
   font-family: "Montserrat", sans-serif;
   font-size: 2.25rem;
   line-height: 3rem;
   font-weight: 600; }
   @media only screen and (max-width: 1200px) {
-    .contact__headline, .home-feature__text--title, .insta__headline, .partner-contact__headline, .staff__headline, .about__intro--headline {
+    .contact__headline, .home-feature__text--title, .insta__headline, .partner-contact__headline, .staff__headline, .about__intro--headline, .error__headline {
       font-size: 1.875rem;
       line-height: 2.25rem; } }
   @media only screen and (max-width: 500px) {
-    .contact__headline, .home-feature__text--title, .insta__headline, .partner-contact__headline, .staff__headline, .about__intro--headline {
+    .contact__headline, .home-feature__text--title, .insta__headline, .partner-contact__headline, .staff__headline, .about__intro--headline, .error__headline {
       font-size: 1.5rem;
       line-height: 1.875rem; } }
 
@@ -611,12 +611,12 @@ p.caption {
   font-family: "Montserrat", sans-serif;
   font-weight: 300; }
 
-p, .contact__blurb, .featured__text--subtitle, .home-feature__text--summary, .partner-contact__body p, .about__intro-body {
+p, .contact__blurb, .featured__text--subtitle, .home-feature__text--summary, .partner-contact__body p, .about__intro-body, .error__body {
   font-size: 1.125rem;
   line-height: 1.6;
   margin: 0 0 0.75em; }
   @media only screen and (max-width: 1200px) {
-    p, .contact__blurb, .featured__text--subtitle, .home-feature__text--summary, .partner-contact__body p, .about__intro-body {
+    p, .contact__blurb, .featured__text--subtitle, .home-feature__text--summary, .partner-contact__body p, .about__intro-body, .error__body {
       font-size: 1rem; } }
 
 .post-card__summary, .staff__bios--bio-text, .about__intro-quote {
@@ -3916,30 +3916,35 @@ body {
         font-size: 0.875rem; } }
 
 .error {
-  width: 32.20339%;
-  float: left;
-  margin-right: 1.69492%;
-  margin-left: 33.89831%;
-  text-align: center;
-  padding: 4.5em 0 0; }
-  @media (max-width: 1200px) {
+  position: relative;
+  padding: 0 7.5rem;
+  overflow: hidden;
+  background-color: #f2f2f2;
+  z-index: 1;
+  padding-bottom: 5rem; }
+  @media only screen and (max-width: 1200px) {
     .error {
-      width: 49.15254%;
-      float: left;
-      margin-right: 1.69492%;
-      margin-left: 25.42373%; } }
-  @media (max-width: 960px) {
+      padding: 0 5rem; } }
+  @media only screen and (max-width: 500px) {
     .error {
-      width: 66.10169%;
-      float: left;
-      margin-right: 1.69492%;
-      margin-left: 16.94915%; } }
-  @media (max-width: 700px) {
-    .error {
-      width: 83.05085%;
-      float: left;
-      margin-right: 1.69492%;
-      margin-left: 8.47458%; } }
+      padding: 0; } }
+  .error__inner {
+    max-width: 480px;
+    margin: 0 auto;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 2.5rem 0 5rem;
+    text-align: center; }
+  .error__headline {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    margin-bottom: 1.5rem; }
 
 .home-posts {
   position: relative;
