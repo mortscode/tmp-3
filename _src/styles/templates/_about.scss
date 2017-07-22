@@ -3,7 +3,7 @@
 
   &__intro {
     @extend %content-inner-wrapper-narrow;
-    padding: 40px 0;
+    padding: rem(40) 0;
     position: relative;
 
     &--headline {
@@ -11,6 +11,10 @@
       flex: 0 0 100%;
       text-align: center;
       margin: 0 0 rem(12);
+
+      @include bp($sm) {
+        padding: 0 rem(30);
+      }
     }
 
     &--subhead {
@@ -18,6 +22,10 @@
       flex: 0 0 100%;
       text-align: center;
       margin: 0 0 rem(40);
+
+      @include bp($sm) {
+        padding: 0 rem(30);
+      }
     }
 
     &--image {
@@ -32,6 +40,11 @@
     @extend %text-sm;
     flex: 0 0 33%;
     padding-right: 30px;
+
+    @include bp($sm) {
+      flex: 0 0 100%;
+      padding: 0 rem(30);
+    }
 
     &--quote {
       font-style: italic;
@@ -48,5 +61,10 @@
   &__intro-body {
     @extend %text-lg;
     flex: 0 0 66%;
+
+    @include bp($sm) {
+      flex: 0 0 100%;
+      padding: 0 rem(30);
+    }
   }
 }

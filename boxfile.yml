@@ -3,7 +3,7 @@ run.config:
   extra_packages:
     - jpegoptim
   engine.config:
-    runtime: php-7.0
+    runtime: php-7.1
     document_root: public
     webserver: apache
     extensions:

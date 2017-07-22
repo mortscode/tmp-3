@@ -5,6 +5,10 @@
   &__inner-wrapper {
     @extend %content-inner-wrapper;
     padding: rem(80) 0;
+
+    @include bp($md) {
+      padding: rem(80) 0 rem(50);
+    }
   }
 
   &__headline {
@@ -17,12 +21,13 @@
   &__grams {
     flex: 0 0 100%;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     &--photo {
       background: 50% 50% no-repeat;
       background-size: cover;
-      flex: 0 0 calc(25% - 30px);
-      margin-right: rem(30);
+      flex: 0 0 calc(25% - 20px);
       outline: 0px solid $tmp-brand;
       transition: outline $ease-fast;
 
@@ -35,6 +40,11 @@
       &:hover,
       &:focus {
         outline: 4px solid $tmp-brand;
+      }
+
+      @include bp($md) {
+        flex: 0 0 calc(50% - 15px);
+        margin-bottom: 30px;
       }
     }
   }

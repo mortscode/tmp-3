@@ -788,7 +788,7 @@ hr {
       align-items: flex-start;
       -ms-flex: 0 0 100%;
       flex: 0 0 100%; } }
-  @media only screen and (max-width: 370px) {
+  @media only screen and (max-width: 374px) {
     .about-card {
       padding: 1.875rem; } }
   .about-card__image {
@@ -1123,7 +1123,7 @@ hr {
       flex-direction: row;
       margin-bottom: 2.5rem;
       padding: 2.5rem 3.125rem 1.5625rem; } }
-  @media only screen and (max-width: 370px) {
+  @media only screen and (max-width: 374px) {
     .featured {
       padding: 2.5rem 1.875rem 1.875rem; } }
   .featured__bg {
@@ -1609,7 +1609,7 @@ hr {
     @media only screen and (max-width: 500px) {
       .home-feature__text {
         padding: 1.875rem 3.125rem 0; } }
-    @media only screen and (max-width: 370px) {
+    @media only screen and (max-width: 374px) {
       .home-feature__text {
         padding: 1.875rem 1.875rem 0; } }
     .home-feature__text--date {
@@ -1720,6 +1720,9 @@ hr {
       padding: 0; } }
   .insta__inner-wrapper {
     padding: 5rem 0; }
+    @media only screen and (max-width: 840px) {
+      .insta__inner-wrapper {
+        padding: 5rem 0 3.125rem; } }
   .insta__headline {
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
@@ -1729,13 +1732,16 @@ hr {
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
     .insta__grams--photo {
       background: 50% 50% no-repeat;
       background-size: cover;
-      -ms-flex: 0 0 calc(25% - 30px);
-      flex: 0 0 calc(25% - 30px);
-      margin-right: 1.875rem;
+      -ms-flex: 0 0 calc(25% - 20px);
+      flex: 0 0 calc(25% - 20px);
       outline: 0px solid #bfaf7c;
       transition: outline 150ms ease-in-out; }
       .insta__grams--photo::after {
@@ -1744,6 +1750,11 @@ hr {
         padding-bottom: 120%; }
       .insta__grams--photo:hover, .insta__grams--photo:focus {
         outline: 4px solid #bfaf7c; }
+      @media only screen and (max-width: 840px) {
+        .insta__grams--photo {
+          -ms-flex: 0 0 calc(50% - 15px);
+          flex: 0 0 calc(50% - 15px);
+          margin-bottom: 30px; } }
 
 .instructions {
   background-color: rgba(150, 153, 151, 0.85);
@@ -2623,7 +2634,7 @@ hr {
       flex: 0 0 100%; }
       .post-card:nth-child(even), .post-card:nth-child(odd) {
         padding: 0 3.125rem; } }
-    @media only screen and (max-width: 500px) and (max-width: 370px) {
+    @media only screen and (max-width: 500px) and (max-width: 374px) {
       .post-card:nth-child(even), .post-card:nth-child(odd) {
         padding: 0 1.875rem; } }
   .post-card.after-featured {
@@ -3647,6 +3658,12 @@ hr {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 2.5rem 0 5rem; }
+  @media only screen and (max-width: 840px) {
+    .staff {
+      padding: 2.5rem 0 3.125rem; } }
+  @media only screen and (max-width: 500px) {
+    .staff {
+      padding: 2.5rem 1.875rem 3.125rem; } }
   .staff__headline {
     text-align: center;
     -ms-flex: 0 0 100%;
@@ -3661,13 +3678,28 @@ hr {
     flex-wrap: wrap;
     -ms-flex-pack: center;
     justify-content: center; }
+    @media only screen and (max-width: 840px) {
+      .staff__bios {
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-line-pack: start;
+        align-content: flex-start; } }
     .staff__bios--bio-wrapper {
       -ms-flex: 0 0 calc(25% - 30px);
       flex: 0 0 calc(25% - 30px);
       margin-right: 1.875rem;
       position: relative; }
-      .staff__bios--bio-wrapper::last-child {
+      .staff__bios--bio-wrapper:last-child {
         margin-right: 0; }
+      @media only screen and (max-width: 840px) {
+        .staff__bios--bio-wrapper {
+          -ms-flex: 0 0 calc(50% - 15px);
+          flex: 0 0 calc(50% - 15px);
+          margin: 0 0 30px; } }
+      @media only screen and (max-width: 374px) {
+        .staff__bios--bio-wrapper {
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%; } }
     .staff__bios--bio-photo {
       background: 50% 50% no-repeat;
       background-size: cover;
@@ -3813,18 +3845,24 @@ body {
     .about {
       padding: 0; } }
   .about__intro {
-    padding: 40px 0;
+    padding: 2.5rem 0;
     position: relative; }
     .about__intro--headline {
       -ms-flex: 0 0 100%;
       flex: 0 0 100%;
       text-align: center;
       margin: 0 0 0.75rem; }
+      @media only screen and (max-width: 500px) {
+        .about__intro--headline {
+          padding: 0 1.875rem; } }
     .about__intro--subhead {
       -ms-flex: 0 0 100%;
       flex: 0 0 100%;
       text-align: center;
       margin: 0 0 2.5rem; }
+      @media only screen and (max-width: 500px) {
+        .about__intro--subhead {
+          padding: 0 1.875rem; } }
     .about__intro--image {
       display: -ms-flexbox;
       display: flex;
@@ -3835,6 +3873,11 @@ body {
     -ms-flex: 0 0 33%;
     flex: 0 0 33%;
     padding-right: 30px; }
+    @media only screen and (max-width: 500px) {
+      .about__intro-quote {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        padding: 0 1.875rem; } }
     .about__intro-quote--quote {
       font-style: italic;
       margin-bottom: 0.75rem; }
@@ -3845,6 +3888,11 @@ body {
   .about__intro-body {
     -ms-flex: 0 0 66%;
     flex: 0 0 66%; }
+    @media only screen and (max-width: 500px) {
+      .about__intro-body {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        padding: 0 1.875rem; } }
 
 .archive {
   position: relative;
@@ -3901,6 +3949,9 @@ body {
         content: '';
         display: block;
         padding-bottom: 149.92504%; }
+    .archive__list-item--picture {
+      width: 100%;
+      height: auto; }
     .archive__list-item--date {
       color: #969997;
       font-style: italic;

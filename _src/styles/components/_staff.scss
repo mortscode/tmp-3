@@ -5,6 +5,14 @@
   flex-wrap: wrap;
   padding: rem(40) 0 rem(80);
 
+  @include bp($md) {
+    padding: rem(40) 0 rem(50);
+  }
+
+  @include bp($sm) {
+    padding: rem(40) rem(30) rem(50);
+  }
+
   &__headline {
     @extend %title-lg;
     text-align: center;
@@ -18,13 +26,27 @@
     flex-wrap: wrap;
     justify-content: center;
 
+    @include bp($md) {
+      justify-content: space-between;
+      align-content: flex-start
+    }
+
     &--bio-wrapper {
       flex: 0 0 calc(25% - 30px);
       margin-right: rem(30);
       position: relative;
 
-      &::last-child {
+      &:last-child {
         margin-right: 0;
+      }
+
+      @include bp($md) {
+        flex: 0 0 calc(50% - 15px);
+        margin: 0 0 30px;
+      }
+
+      @include bp($xs) {
+        flex: 0 0 100%;
       }
     }
 

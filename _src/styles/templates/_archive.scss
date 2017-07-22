@@ -64,6 +64,11 @@
       }
     }
 
+    &--picture {
+      width: 100%;
+      height: auto;
+    }
+
     &--date {
       @extend %text-xs;
       color: $tmp-gray;
